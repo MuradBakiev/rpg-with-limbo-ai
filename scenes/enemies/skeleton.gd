@@ -1,0 +1,25 @@
+extends CharacterBody2D
+
+var attack: bool = false
+
+func _process(_delta: float) -> void:
+	#var direction = (Globals.player_pos - position).normalized()
+	#if position.x > Globals.player_pos.x:
+		#$AnimatedSprite2D.flip_h = true
+	#else:
+		#$AnimatedSprite2D.flip_h = false
+	
+	#velocity = direction * speed
+	move_and_slide()
+
+func move(dir, speed):
+	velocity = dir * speed
+
+func _on_notice_area_body_entered(_body: Node2D) -> void:
+	attack = true
+
+func _on_notice_area_body_exited(_body: Node2D) -> void:
+	attack = false
+
+func stop_motion():
+	velocity = Vector2.ZERO
