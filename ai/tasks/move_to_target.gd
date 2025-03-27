@@ -3,7 +3,7 @@ extends BTAction
 @export var target_var := &"target"
 
 @export var speed_var = 100
-@export var tolerance: Vector2 = Vector2(20, 20)
+@export var tolerance: float = 30.0
 
 func _tick(_delta: float) -> Status:
 	#print(blackboard.get_vars_as_dict())
@@ -12,11 +12,13 @@ func _tick(_delta: float) -> Status:
 		var target_position = target.global_position
 		var dir = agent.global_position.direction_to(target_position)
 		
-		if abs(agent.global_position - target_position) < tolerance: #if we reached target with some tolerance, then set speed to 0
+		print(agent.global_position - target_position)
+		if abs(agent.global_position.x - target_position.x) < tolerance and abs(agent.global_position.y - target_position.y) < tolerance: #if we reached target with some tolerance, then set speed to 0
 			agent.move(dir, 0) #method from enemy.gd script
 			return SUCCESS
 		else:
 			agent.move(dir, speed_var)
+			agent.update_facing()
 			return RUNNING
 		
 	return FAILURE

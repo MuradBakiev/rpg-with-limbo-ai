@@ -164,6 +164,9 @@ animations = [{
 "speed": 12.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wcuvk"]
+size = Vector2(14.2, 23.2)
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_byqhl"]
 radius = 4.4
 
@@ -171,9 +174,6 @@ radius = 4.4
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_caf5q"]
 radius = 139.621
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_wcuvk"]
-size = Vector2(14.2, 23.2)
 
 [sub_resource type="Animation" id="Animation_wtpf7"]
 length = 0.001
@@ -204,7 +204,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("HurtBox/HurtBoxCollisionShape2D:disabled")
+tracks/2/path = NodePath("AnimatedSprite2D/HurtBox/HurtBoxCollisionShape2D:disabled")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -244,7 +244,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("HurtBox/HurtBoxCollisionShape2D:disabled")
+tracks/2/path = NodePath("AnimatedSprite2D/HurtBox/HurtBoxCollisionShape2D:disabled")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -350,6 +350,14 @@ sprite_frames = SubResource("SpriteFrames_f28a1")
 animation = &"walk"
 frame = 3
 
+[node name="HurtBox" type="Area2D" parent="AnimatedSprite2D"]
+position = Vector2(0.8, 4.4)
+scale = Vector2(1, 1)
+
+[node name="HurtBoxCollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D/HurtBox"]
+position = Vector2(14.1, -8.8)
+shape = SubResource("RectangleShape2D_wcuvk")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_byqhl")
 
@@ -362,12 +370,6 @@ collision_layer = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="NoticeArea"]
 shape = SubResource("CircleShape2D_caf5q")
-
-[node name="HurtBox" type="Area2D" parent="."]
-
-[node name="HurtBoxCollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
-position = Vector2(14.1, -8.8)
-shape = SubResource("RectangleShape2D_wcuvk")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

@@ -11,8 +11,9 @@ func _tick(_delta: float) -> Status:
 	var dir = blackboard.get_var(dir_var)
 	
 	if abs(agent.global_position - target_pos) < tolerance: #if we reached target with some tolerance, then set speed to 0
-		agent.move(dir, 0) #method from enemy.gd script
+		agent.move(dir, 0)
 		return SUCCESS
 	else:
 		agent.move(dir, speed)
+		agent.update_facing()
 		return RUNNING
