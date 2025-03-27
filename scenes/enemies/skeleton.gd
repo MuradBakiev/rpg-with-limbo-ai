@@ -10,10 +10,11 @@ func _process(_delta: float) -> void:
 		#$AnimatedSprite2D.flip_h = false
 	
 	#velocity = direction * speed
-	move_and_slide()
+	pass
 
 func move(dir, speed):
 	velocity = dir * speed
+	move_and_slide()
 
 func _on_notice_area_body_entered(_body: Node2D) -> void:
 	attack = true
@@ -23,3 +24,6 @@ func _on_notice_area_body_exited(_body: Node2D) -> void:
 
 func stop_motion():
 	velocity = Vector2.ZERO
+
+func die():
+	queue_free()

@@ -1,4 +1,4 @@
-[gd_resource type="BehaviorTree" load_steps=30 format=3 uid="uid://cs21y4k4qm53i"]
+[gd_resource type="BehaviorTree" load_steps=31 format=3 uid="uid://cs21y4k4qm53i"]
 
 [ext_resource type="Script" path="res://ai/tasks/random_dir.gd" id="1_r8eb2"]
 [ext_resource type="Script" path="res://ai/tasks/move_to_pos.gd" id="2_h4rtk"]
@@ -28,57 +28,21 @@ animation_player = SubResource("BBNode_bedva")
 animation_name = &"idle"
 
 [sub_resource type="BTRandomWait" id="BTRandomWait_8bo1b"]
+min_duration = 0.5
+max_duration = 1.5
 
 [sub_resource type="BTSequence" id="BTSequence_7u20q"]
 custom_name = "Idle Sequence"
 children = [SubResource("BTCheckAgentProperty_ql6nu"), SubResource("BTConsolePrint_cfqxn"), SubResource("BTPlayAnimation_3dte7"), SubResource("BTRandomWait_8bo1b")]
 
-[sub_resource type="BBVariant" id="BBVariant_rqcml"]
-type = 1
-saved_value = false
-resource_name = "false"
-
-[sub_resource type="BTCheckAgentProperty" id="BTCheckAgentProperty_5rt6f"]
-property = &"attack"
-value = SubResource("BBVariant_rqcml")
-
-[sub_resource type="BBNode" id="BBNode_ymtit"]
-saved_value = NodePath("AnimationPlayer")
-resource_name = "AnimationPlayer"
-
-[sub_resource type="BTPlayAnimation" id="BTPlayAnimation_xlnb0"]
-animation_player = SubResource("BBNode_ymtit")
-animation_name = &"walk"
-
-[sub_resource type="BTConsolePrint" id="BTConsolePrint_cn7mq"]
-text = "random move"
-
-[sub_resource type="BTAction" id="BTAction_dk5rq"]
-script = ExtResource("1_r8eb2")
-range_min_in_dir = 100
-range_max_in_dir = 300
-position_var = &"pos"
-direction_var = &"dir"
-
-[sub_resource type="BTAction" id="BTAction_kljvh"]
-script = ExtResource("2_h4rtk")
-target_pos_var = &"pos"
-dir_var = &"dir"
-speed = 100
-tolerance = Vector2(10, 10)
-
-[sub_resource type="BTSequence" id="BTSequence_xvj4a"]
-custom_name = "Random Move Sequence"
-children = [SubResource("BTCheckAgentProperty_5rt6f"), SubResource("BTPlayAnimation_xlnb0"), SubResource("BTConsolePrint_cn7mq"), SubResource("BTAction_dk5rq"), SubResource("BTAction_kljvh")]
-
-[sub_resource type="BBVariant" id="BBVariant_py2lb"]
+[sub_resource type="BBVariant" id="BBVariant_uusut"]
 type = 1
 saved_value = true
 resource_name = "true"
 
-[sub_resource type="BTCheckAgentProperty" id="BTCheckAgentProperty_2w250"]
+[sub_resource type="BTCheckAgentProperty" id="BTCheckAgentProperty_h005f"]
 property = &"attack"
-value = SubResource("BBVariant_py2lb")
+value = SubResource("BBVariant_uusut")
 
 [sub_resource type="BBNode" id="BBNode_apnfi"]
 saved_value = NodePath("AnimationPlayer")
@@ -102,13 +66,54 @@ target_var = &"target"
 speed_var = 100
 tolerance = Vector2(20, 20)
 
-[sub_resource type="BTDynamicSequence" id="BTDynamicSequence_fqe6u"]
+[sub_resource type="BTSequence" id="BTSequence_tbq6c"]
 custom_name = "Move To Player"
-children = [SubResource("BTCheckAgentProperty_2w250"), SubResource("BTPlayAnimation_v5i13"), SubResource("BTConsolePrint_c624m"), SubResource("BTAction_b5kh8"), SubResource("BTAction_4ctev")]
+children = [SubResource("BTCheckAgentProperty_h005f"), SubResource("BTPlayAnimation_v5i13"), SubResource("BTConsolePrint_c624m"), SubResource("BTAction_b5kh8"), SubResource("BTAction_4ctev")]
 
-[sub_resource type="BTSelector" id="BTSelector_8iwei"]
-children = [SubResource("BTSequence_7u20q"), SubResource("BTSequence_xvj4a"), SubResource("BTDynamicSequence_fqe6u")]
+[sub_resource type="BBVariant" id="BBVariant_rqcml"]
+type = 1
+saved_value = false
+resource_name = "false"
+
+[sub_resource type="BTCheckAgentProperty" id="BTCheckAgentProperty_5rt6f"]
+property = &"attack"
+value = SubResource("BBVariant_rqcml")
+
+[sub_resource type="BTConsolePrint" id="BTConsolePrint_cn7mq"]
+text = "random move"
+
+[sub_resource type="BBNode" id="BBNode_ymtit"]
+saved_value = NodePath("AnimationPlayer")
+resource_name = "AnimationPlayer"
+
+[sub_resource type="BTPlayAnimation" id="BTPlayAnimation_xlnb0"]
+animation_player = SubResource("BBNode_ymtit")
+animation_name = &"walk"
+
+[sub_resource type="BTAction" id="BTAction_dk5rq"]
+script = ExtResource("1_r8eb2")
+range_min_in_dir = 100
+range_max_in_dir = 300
+position_var = &"pos"
+direction_var = &"dir"
+
+[sub_resource type="BTAction" id="BTAction_kljvh"]
+script = ExtResource("2_h4rtk")
+target_pos_var = &"pos"
+dir_var = &"dir"
+speed = 100
+tolerance = Vector2(10, 10)
+
+[sub_resource type="BTSequence" id="BTSequence_xvj4a"]
+custom_name = "Random Move Sequence"
+children = [SubResource("BTCheckAgentProperty_5rt6f"), SubResource("BTConsolePrint_cn7mq"), SubResource("BTPlayAnimation_xlnb0"), SubResource("BTAction_dk5rq"), SubResource("BTAction_kljvh")]
+
+[sub_resource type="BTSelector" id="BTSelector_8ddxb"]
+children = [SubResource("BTSequence_tbq6c"), SubResource("BTSequence_xvj4a")]
+
+[sub_resource type="BTDynamicSelector" id="BTDynamicSelector_x1402"]
+children = [SubResource("BTSequence_7u20q"), SubResource("BTSelector_8ddxb")]
 
 [resource]
 blackboard_plan = SubResource("BlackboardPlan_3b6hr")
-root_task = SubResource("BTSelector_8iwei")
+root_task = SubResource("BTDynamicSelector_x1402")

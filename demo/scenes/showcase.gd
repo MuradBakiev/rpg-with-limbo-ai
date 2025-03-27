@@ -98,7 +98,7 @@ func _load_agent(file_name: String) -> void:
 	assert(agent_res != null)
 
 	for child in get_children():
-		if child is CharacterBody2D and child.name != "Dummy":
+		if child is CharacterBody2D and child.name != "Dummy" and child.name != "Player" and child.name != "Player2":
 			child.die()
 
 	var agent: CharacterBody2D = agent_res.instantiate()

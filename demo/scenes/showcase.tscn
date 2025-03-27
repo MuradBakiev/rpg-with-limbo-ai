@@ -9,8 +9,8 @@
 [ext_resource type="Script" path="res://demo/scenes/base/toggle_fullscreen.gd" id="6_uggpo"]
 [ext_resource type="Texture2D" uid="uid://bjakugmqbbtw7" path="res://demo/assets/arrow_right.png" id="7_5do2y"]
 [ext_resource type="PackedScene" uid="uid://bsig1usigbbuy" path="res://demo/scenes/base/arena.tscn" id="7_42nq6"]
-[ext_resource type="PackedScene" uid="uid://c5fhe3tulhlco" path="res://demo/props/dummy.tscn" id="8_apshw"]
 [ext_resource type="Script" path="res://demo/scenes/base/code_edit.gd" id="9_txke7"]
+[ext_resource type="PackedScene" uid="uid://bcflgusbq2voj" path="res://scenes/player/player.tscn" id="12_axdjj"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_rdr7a"]
 font = ExtResource("3_7vli5")
@@ -245,7 +245,6 @@ fit_content = true
 
 [node name="CodePopup" type="PopupPanel" parent="UI Layer/Control"]
 unique_name_in_owner = true
-position = Vector2i(0, 60)
 size = Vector2i(1024, 708)
 visible = true
 
@@ -279,8 +278,8 @@ drag_bottom_margin = 0.1
 [node name="Arena" parent="." instance=ExtResource("7_42nq6")]
 metadata/_edit_lock_ = true
 
-[node name="Dummy" parent="." instance=ExtResource("8_apshw")]
-position = Vector2(1106, 423)
+[node name="Player2" parent="." instance=ExtResource("12_axdjj")]
+position = Vector2(1236, 328)
 
 [connection signal="pressed" from="UI Layer/Control/Toolbar/HBoxContainer/SwitchToGame" to="." method="_on_switch_to_game_pressed"]
 [connection signal="pressed" from="UI Layer/Control/Toolbar/HBoxContainer/BeginTutorial" to="." method="_on_tutorial_pressed"]
