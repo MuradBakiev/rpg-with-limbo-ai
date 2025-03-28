@@ -1,9 +1,9 @@
 [gd_scene load_steps=36 format=3 uid="uid://8iol6co7u3so"]
 
 [ext_resource type="Script" path="res://scenes/enemies/skeleton.gd" id="1_a1xb0"]
-[ext_resource type="Texture2D" uid="uid://bdry35l1q6cca" path="res://graphics/Tiny RPG Character Asset Pack v1.03 -Full 20 Characters/Characters(100x100)/Skeleton/Skeleton/Skeleton-Idle.png" id="1_u1stn"]
 [ext_resource type="Texture2D" uid="uid://lixbqu1hev3u" path="res://graphics/Tiny RPG Character Asset Pack v1.03 -Full 20 Characters/Characters(100x100)/Skeleton/Skeleton with shadows/Skeleton-Attack01.png" id="2_ijivd"]
 [ext_resource type="Texture2D" uid="uid://4n2vq34nafbq" path="res://graphics/Tiny RPG Character Asset Pack v1.03 -Full 20 Characters/Characters(100x100)/Skeleton/Skeleton with shadows/Skeleton-Walk.png" id="3_8uolv"]
+[ext_resource type="Texture2D" uid="uid://ts1ptb2wvfwj" path="res://graphics/Tiny RPG Character Asset Pack v1.03 -Full 20 Characters/Characters(100x100)/Skeleton/Skeleton with shadows/Skeleton-Idle.png" id="3_28vvi"]
 [ext_resource type="BehaviorTree" uid="uid://cs21y4k4qm53i" path="res://ai/trees/skeleton.tres" id="4_2k6b4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_takt8"]
@@ -30,28 +30,28 @@ region = Rect2(400, 0, 100, 100)
 atlas = ExtResource("2_ijivd")
 region = Rect2(500, 0, 100, 100)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_tufqx"]
-atlas = ExtResource("1_u1stn")
+[sub_resource type="AtlasTexture" id="AtlasTexture_2b80s"]
+atlas = ExtResource("3_28vvi")
 region = Rect2(0, 0, 100, 100)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_jah1s"]
-atlas = ExtResource("1_u1stn")
+[sub_resource type="AtlasTexture" id="AtlasTexture_w8381"]
+atlas = ExtResource("3_28vvi")
 region = Rect2(100, 0, 100, 100)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_m57bb"]
-atlas = ExtResource("1_u1stn")
+[sub_resource type="AtlasTexture" id="AtlasTexture_bywci"]
+atlas = ExtResource("3_28vvi")
 region = Rect2(200, 0, 100, 100)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_c5d14"]
-atlas = ExtResource("1_u1stn")
+[sub_resource type="AtlasTexture" id="AtlasTexture_0d8gj"]
+atlas = ExtResource("3_28vvi")
 region = Rect2(300, 0, 100, 100)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_8504t"]
-atlas = ExtResource("1_u1stn")
+[sub_resource type="AtlasTexture" id="AtlasTexture_gmsr5"]
+atlas = ExtResource("3_28vvi")
 region = Rect2(400, 0, 100, 100)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_w0c7p"]
-atlas = ExtResource("1_u1stn")
+[sub_resource type="AtlasTexture" id="AtlasTexture_j6e8x"]
+atlas = ExtResource("3_28vvi")
 region = Rect2(500, 0, 100, 100)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3fcbh"]
@@ -113,22 +113,22 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_tufqx")
+"texture": SubResource("AtlasTexture_2b80s")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_jah1s")
+"texture": SubResource("AtlasTexture_w8381")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_m57bb")
+"texture": SubResource("AtlasTexture_bywci")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_c5d14")
+"texture": SubResource("AtlasTexture_0d8gj")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_8504t")
+"texture": SubResource("AtlasTexture_gmsr5")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_w0c7p")
+"texture": SubResource("AtlasTexture_j6e8x")
 }],
 "loop": true,
 "name": &"idle",
@@ -180,7 +180,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/path = NodePath("Root/AnimatedSprite2D:animation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -192,7 +192,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/path = NodePath("Root/AnimatedSprite2D:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -204,7 +204,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("AnimatedSprite2D/HurtBox/HurtBoxCollisionShape2D:disabled")
+tracks/2/path = NodePath("Root/AnimatedSprite2D/HurtBox/HurtBoxCollisionShape2D:disabled")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -220,7 +220,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/path = NodePath("Root/AnimatedSprite2D:animation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -232,7 +232,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/path = NodePath("Root/AnimatedSprite2D:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -244,7 +244,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("AnimatedSprite2D/HurtBox/HurtBoxCollisionShape2D:disabled")
+tracks/2/path = NodePath("Root/AnimatedSprite2D/HurtBox/HurtBoxCollisionShape2D:disabled")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -262,7 +262,7 @@ step = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/path = NodePath("Root/AnimatedSprite2D:animation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -274,7 +274,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/path = NodePath("Root/AnimatedSprite2D:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -305,7 +305,7 @@ step = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/path = NodePath("Root/AnimatedSprite2D:animation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -317,7 +317,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/path = NodePath("Root/AnimatedSprite2D:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -343,18 +343,21 @@ collision_mask = 21
 motion_mode = 1
 script = ExtResource("1_a1xb0")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="Root" type="Node2D" parent="."]
+scale = Vector2(1, 1)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Root"]
 texture_filter = 1
 position = Vector2(-0.8, -4.4)
+scale = Vector2(1, 1)
 sprite_frames = SubResource("SpriteFrames_f28a1")
 animation = &"walk"
 frame = 3
 
-[node name="HurtBox" type="Area2D" parent="AnimatedSprite2D"]
+[node name="HurtBox" type="Area2D" parent="Root/AnimatedSprite2D"]
 position = Vector2(0.8, 4.4)
-scale = Vector2(1, 1)
 
-[node name="HurtBoxCollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D/HurtBox"]
+[node name="HurtBoxCollisionShape2D" type="CollisionShape2D" parent="Root/AnimatedSprite2D/HurtBox"]
 position = Vector2(14.1, -8.8)
 shape = SubResource("RectangleShape2D_wcuvk")
 

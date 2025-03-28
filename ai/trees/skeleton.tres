@@ -1,4 +1,4 @@
-[gd_resource type="BehaviorTree" load_steps=30 format=3 uid="uid://cs21y4k4qm53i"]
+[gd_resource type="BehaviorTree" load_steps=34 format=3 uid="uid://cs21y4k4qm53i"]
 
 [ext_resource type="Script" path="res://ai/tasks/random_dir.gd" id="1_r8eb2"]
 [ext_resource type="Script" path="res://ai/tasks/move_to_pos.gd" id="2_h4rtk"]
@@ -45,10 +45,28 @@ children = [SubResource("BTCheckAgentProperty_h005f"), SubResource("BTPlayAnimat
 [sub_resource type="BTConsolePrint" id="BTConsolePrint_6of2i"]
 text = "attack!"
 
+[sub_resource type="BBNode" id="BBNode_pfi0v"]
+saved_value = NodePath("AnimationPlayer")
+resource_name = "AnimationPlayer"
+
+[sub_resource type="BTPlayAnimation" id="BTPlayAnimation_keqog"]
+animation_player = SubResource("BBNode_pfi0v")
+animation_name = &"attack1"
+
+[sub_resource type="BBNode" id="BBNode_u3in1"]
+saved_value = NodePath("AnimationPlayer")
+resource_name = "AnimationPlayer"
+
+[sub_resource type="BTAwaitAnimation" id="BTAwaitAnimation_57ewq"]
+animation_player = SubResource("BBNode_u3in1")
+animation_name = &"attack1"
+
 [sub_resource type="BTSequence" id="BTSequence_n431p"]
-children = [SubResource("BTConsolePrint_6of2i")]
+custom_name = "Attack"
+children = [SubResource("BTConsolePrint_6of2i"), SubResource("BTPlayAnimation_keqog"), SubResource("BTAwaitAnimation_57ewq")]
 
 [sub_resource type="BTSequence" id="BTSequence_gx77r"]
+custom_name = "Attacking"
 children = [SubResource("BTSequence_vvjnn"), SubResource("BTSequence_n431p")]
 
 [sub_resource type="BTConsolePrint" id="BTConsolePrint_cfqxn"]
@@ -100,6 +118,7 @@ custom_name = "Random Move Sequence"
 children = [SubResource("BTConsolePrint_cn7mq"), SubResource("BTPlayAnimation_xlnb0"), SubResource("BTAction_dk5rq"), SubResource("BTAction_kljvh")]
 
 [sub_resource type="BTSequence" id="BTSequence_fkguu"]
+custom_name = "Wandering"
 children = [SubResource("BTSequence_7u20q"), SubResource("BTSequence_xvj4a")]
 
 [sub_resource type="BTSelector" id="BTSelector_gtd1m"]

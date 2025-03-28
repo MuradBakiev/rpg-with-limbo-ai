@@ -19,9 +19,10 @@ func move(dir, speed):
 
 func update_facing():
 	if velocity.x < 0:
-		$AnimatedSprite2D.flip_h = true
+		$Root.scale.x = -1
 	else:
-		$AnimatedSprite2D.flip_h = false
+		#$AnimatedSprite2D.flip_h = false
+		$Root.scale.x = 1
 
 func _on_notice_area_body_entered(_body: Node2D) -> void:
 	attack = true
