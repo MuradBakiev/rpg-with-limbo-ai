@@ -172,9 +172,13 @@ scale = Vector2(2.5, 2.5)
 collision_mask = 22
 script = ExtResource("1_dxg85")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="Root" type="Node2D" parent="."]
+scale = Vector2(1, 1)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Root"]
 texture_filter = 1
 position = Vector2(0, -4)
+scale = Vector2(1, 1)
 sprite_frames = SubResource("SpriteFrames_f8fwk")
 animation = &"walk"
 

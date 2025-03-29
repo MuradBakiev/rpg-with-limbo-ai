@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 var is_attacking: bool = false
 var direction: Vector2 = Vector2.ZERO
+@onready var animation_node: AnimatedSprite2D = $Root/AnimatedSprite2D
 
 func _process(_delta: float) -> void:
 	#Globals.player_pos = position
@@ -9,19 +10,19 @@ func _process(_delta: float) -> void:
 	if !is_attacking:
 		direction = Input.get_vector("left", "right", "up", "down")
 		if direction.x != 0 or direction.y != 0:
-			$AnimatedSprite2D.play("walk")
+			animation_node.play("walk")
 			if direction.x < 0:
-				$AnimatedSprite2D.flip_h = true
+				animation_node.flip_h = true
 			else:
-				$AnimatedSprite2D.flip_h = false
+				animation_node.flip_h = false
 		else:
-			$AnimatedSprite2D.play("idle")
+			animation_node.play("idle")
 	
 	if Input.is_action_pressed("main action"):
 		is_attacking = true
 		direction = Vector2.ZERO
-		$AnimatedSprite2D.play("attack")
-		await $AnimatedSprite2D.animation_finished
+		animation_node.play("attack")
+		await animation_node.animation_finished
 		is_attacking = false
 	
 	velocity = direction * 200

@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://8iol6co7u3so"]
+[gd_scene load_steps=37 format=3 uid="uid://8iol6co7u3so"]
 
 [ext_resource type="Script" path="res://scenes/enemies/skeleton.gd" id="1_a1xb0"]
 [ext_resource type="Texture2D" uid="uid://lixbqu1hev3u" path="res://graphics/Tiny RPG Character Asset Pack v1.03 -Full 20 Characters/Characters(100x100)/Skeleton/Skeleton with shadows/Skeleton-Attack01.png" id="2_ijivd"]
@@ -167,6 +167,10 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wcuvk"]
 size = Vector2(14.2, 23.2)
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qvtim"]
+radius = 6.8
+height = 20.8
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_byqhl"]
 radius = 4.4
 
@@ -204,7 +208,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Root/AnimatedSprite2D/HurtBox/HurtBoxCollisionShape2D:disabled")
+tracks/2/path = NodePath("Root/HurtBox/HurtBoxCollisionShape2D:disabled")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -244,7 +248,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Root/AnimatedSprite2D/HurtBox/HurtBoxCollisionShape2D:disabled")
+tracks/2/path = NodePath("Root/HurtBox/HurtBoxCollisionShape2D:disabled")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -344,22 +348,27 @@ motion_mode = 1
 script = ExtResource("1_a1xb0")
 
 [node name="Root" type="Node2D" parent="."]
-scale = Vector2(1, 1)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Root"]
 texture_filter = 1
-position = Vector2(-0.8, -4.4)
-scale = Vector2(1, 1)
+position = Vector2(-2, -4)
 sprite_frames = SubResource("SpriteFrames_f28a1")
 animation = &"walk"
 frame = 3
 
-[node name="HurtBox" type="Area2D" parent="Root/AnimatedSprite2D"]
-position = Vector2(0.8, 4.4)
+[node name="HurtBox" type="Area2D" parent="Root"]
+scale = Vector2(1, 1)
 
-[node name="HurtBoxCollisionShape2D" type="CollisionShape2D" parent="Root/AnimatedSprite2D/HurtBox"]
-position = Vector2(14.1, -8.8)
+[node name="HurtBoxCollisionShape2D" type="CollisionShape2D" parent="Root/HurtBox"]
+position = Vector2(12.9, -8.4)
 shape = SubResource("RectangleShape2D_wcuvk")
+
+[node name="HitBox" type="Area2D" parent="Root"]
+position = Vector2(-0.8, -4.4)
+scale = Vector2(1, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Root/HitBox"]
+shape = SubResource("CapsuleShape2D_qvtim")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_byqhl")
@@ -369,6 +378,7 @@ behavior_tree = ExtResource("4_2k6b4")
 blackboard_plan = SubResource("BlackboardPlan_kae3q")
 
 [node name="NoticeArea" type="Area2D" parent="."]
+visible = false
 collision_layer = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="NoticeArea"]
