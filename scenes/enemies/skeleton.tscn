@@ -1,10 +1,14 @@
-[gd_scene load_steps=37 format=3 uid="uid://8iol6co7u3so"]
+[gd_scene load_steps=46 format=3 uid="uid://8iol6co7u3so"]
 
 [ext_resource type="Script" path="res://scenes/enemies/skeleton.gd" id="1_a1xb0"]
 [ext_resource type="Texture2D" uid="uid://lixbqu1hev3u" path="res://graphics/Tiny RPG Character Asset Pack v1.03 -Full 20 Characters/Characters(100x100)/Skeleton/Skeleton with shadows/Skeleton-Attack01.png" id="2_ijivd"]
 [ext_resource type="Texture2D" uid="uid://4n2vq34nafbq" path="res://graphics/Tiny RPG Character Asset Pack v1.03 -Full 20 Characters/Characters(100x100)/Skeleton/Skeleton with shadows/Skeleton-Walk.png" id="3_8uolv"]
 [ext_resource type="Texture2D" uid="uid://ts1ptb2wvfwj" path="res://graphics/Tiny RPG Character Asset Pack v1.03 -Full 20 Characters/Characters(100x100)/Skeleton/Skeleton with shadows/Skeleton-Idle.png" id="3_28vvi"]
+[ext_resource type="Texture2D" uid="uid://g3jjvav2ouft" path="res://graphics/Tiny RPG Character Asset Pack v1.03 -Full 20 Characters/Characters(100x100)/Skeleton/Skeleton with shadows/Skeleton-Hurt.png" id="3_ywadj"]
 [ext_resource type="BehaviorTree" uid="uid://cs21y4k4qm53i" path="res://ai/trees/skeleton.tres" id="4_2k6b4"]
+[ext_resource type="Script" path="res://general scripts/health.gd" id="5_0fahm"]
+[ext_resource type="Script" path="res://general scripts/hurtbox.gd" id="5_06nl8"]
+[ext_resource type="Script" path="res://general scripts/hitbox.gd" id="6_rhiqa"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_takt8"]
 atlas = ExtResource("2_ijivd")
@@ -29,6 +33,22 @@ region = Rect2(400, 0, 100, 100)
 [sub_resource type="AtlasTexture" id="AtlasTexture_065u0"]
 atlas = ExtResource("2_ijivd")
 region = Rect2(500, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dedr5"]
+atlas = ExtResource("3_ywadj")
+region = Rect2(0, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tawsg"]
+atlas = ExtResource("3_ywadj")
+region = Rect2(100, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_355se"]
+atlas = ExtResource("3_ywadj")
+region = Rect2(200, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fjcet"]
+atlas = ExtResource("3_ywadj")
+region = Rect2(300, 0, 100, 100)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2b80s"]
 atlas = ExtResource("3_28vvi")
@@ -109,6 +129,23 @@ animations = [{
 }],
 "loop": true,
 "name": &"attack1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dedr5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tawsg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_355se")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fjcet")
+}],
+"loop": true,
+"name": &"hurt",
 "speed": 5.0
 }, {
 "frames": [{
@@ -208,19 +245,32 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Root/HurtBox/HurtBoxCollisionShape2D:disabled")
+tracks/2/path = NodePath("Root/HitBox/HitBoxCollisionShape2D:disabled")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [false]
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Root/HurtBox/HurtBoxCollisionShape2D:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_cvkhl"]
 resource_name = "attack1"
 loop_mode = 1
+step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -252,7 +302,19 @@ tracks/2/path = NodePath("Root/HurtBox/HurtBoxCollisionShape2D:disabled")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0.0333333, 0.766667),
+"times": PackedFloat32Array(0, 0.5, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Root/HitBox/HitBoxCollisionShape2D:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, false]
@@ -260,7 +322,6 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id="Animation_blv53"]
 resource_name = "idle"
-length = 1.1
 loop_mode = 1
 step = 0.2
 tracks/0/type = "value"
@@ -301,6 +362,30 @@ tracks/2/keys = {
 "method": &"stop_motion"
 }]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Root/HurtBox/HurtBoxCollisionShape2D:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Root/HitBox/HitBoxCollisionShape2D:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_vxeky"]
 resource_name = "walk"
@@ -330,11 +415,76 @@ tracks/1/keys = {
 "update": 0,
 "values": [0, 7]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Root/HurtBox/HurtBoxCollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Root/HitBox/HitBoxCollisionShape2D:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_5tlng"]
+resource_name = "hurt"
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Root/AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"hurt"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Root/AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 3]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Root/HitBox/HitBoxCollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, true]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_smeqr"]
 _data = {
 "RESET": SubResource("Animation_wtpf7"),
 "attack1": SubResource("Animation_cvkhl"),
+"hurt": SubResource("Animation_5tlng"),
 "idle": SubResource("Animation_blv53"),
 "walk": SubResource("Animation_vxeky")
 }
@@ -356,22 +506,29 @@ sprite_frames = SubResource("SpriteFrames_f28a1")
 animation = &"walk"
 frame = 3
 
-[node name="HurtBox" type="Area2D" parent="Root"]
-scale = Vector2(1, 1)
+[node name="HurtBox" type="Area2D" parent="Root" node_paths=PackedStringArray("health")]
+script = ExtResource("5_06nl8")
+health = NodePath("../../Health")
 
 [node name="HurtBoxCollisionShape2D" type="CollisionShape2D" parent="Root/HurtBox"]
-position = Vector2(12.9, -8.4)
+position = Vector2(13.6, -8.4)
 shape = SubResource("RectangleShape2D_wcuvk")
+disabled = true
 
 [node name="HitBox" type="Area2D" parent="Root"]
 position = Vector2(-0.8, -4.4)
-scale = Vector2(1, 1)
+script = ExtResource("6_rhiqa")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Root/HitBox"]
+[node name="HitBoxCollisionShape2D" type="CollisionShape2D" parent="Root/HitBox"]
 shape = SubResource("CapsuleShape2D_qvtim")
+disabled = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_byqhl")
+
+[node name="Health" type="Node" parent="."]
+script = ExtResource("5_0fahm")
+max_health = 5.0
 
 [node name="BTPlayer" type="BTPlayer" parent="."]
 behavior_tree = ExtResource("4_2k6b4")

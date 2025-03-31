@@ -1,16 +1,15 @@
 extends CharacterBody2D
 
 var attack: bool = false
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var btplayer: BTPlayer = $BTPlayer
+@onready var health:Health_manager =  $Health
+
+func _ready() -> void:
+	health.damaged.connect(_damaged)
+	health.death.connect(die)
 
 func _process(_delta: float) -> void:
-	#var direction = (Globals.player_pos - position).normalized()
-	#if position.x > Globals.player_pos.x:
-		#$AnimatedSprite2D.flip_h = true
-	#else:
-		#$AnimatedSprite2D.flip_h = false
-	
-	#velocity = direction * speed
 	pass
 
 func move(dir, speed):
@@ -21,7 +20,6 @@ func update_facing():
 	if velocity.x < 0:
 		$Root.scale.x = -1
 	else:
-		#$AnimatedSprite2D.flip_h = false
 		$Root.scale.x = 1
 
 func _on_notice_area_body_entered(_body: Node2D) -> void:
@@ -34,6 +32,13 @@ func _on_notice_area_body_exited(_body: Node2D) -> void:
 
 func stop_motion():
 	velocity = Vector2.ZERO
+
+func _damaged(amount: float):
+	print("sekeleton damaged")
+	animation_player.play("hurt")
+	btplayer.set_active(false)
+	await animation_player.animation_finished
+	btplayer.restart()
 
 func die():
 	queue_free()

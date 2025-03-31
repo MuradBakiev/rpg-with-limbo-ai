@@ -36,7 +36,7 @@ target_var = &"target"
 script = ExtResource("4_s0ix4")
 target_var = &"target"
 speed_var = 100
-tolerance = 30.0
+tolerance = 50.0
 
 [sub_resource type="BTSequence" id="BTSequence_vvjnn"]
 custom_name = "Move To Player"
