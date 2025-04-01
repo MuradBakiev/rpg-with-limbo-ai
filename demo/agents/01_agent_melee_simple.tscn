@@ -26,6 +26,9 @@ texture = ExtResource("2_bvbes")
 [node name="HandR" parent="Root/Rig/Body" index="2"]
 texture = ExtResource("2_bvbes")
 
+[node name="CollisionShape2D" parent="." index="2"]
+visible = true
+
 [node name="Health" parent="." index="3"]
 max_health = 3.0
 

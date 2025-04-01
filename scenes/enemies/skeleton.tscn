@@ -201,12 +201,11 @@ animations = [{
 "speed": 12.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_wcuvk"]
-size = Vector2(14.2, 23.2)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_a7teo"]
+radius = 7.2
+height = 22.4
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qvtim"]
-radius = 6.8
-height = 20.8
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v3uy7"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_byqhl"]
 radius = 4.4
@@ -228,7 +227,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [&"walk"]
+"values": [&"idle"]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -302,10 +301,10 @@ tracks/2/path = NodePath("Root/HurtBox/HurtBoxCollisionShape2D:disabled")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.5, 0.8, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [true, false, true, true]
+"values": [false, false]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -314,10 +313,63 @@ tracks/3/path = NodePath("Root/HitBox/HitBoxCollisionShape2D:disabled")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 1),
+"times": PackedFloat32Array(0, 0.5, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, true]
+}
+
+[sub_resource type="Animation" id="Animation_5tlng"]
+resource_name = "hurt"
+length = 0.3
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Root/AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"hurt"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Root/AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 3]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Root/HitBox/HitBoxCollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [false, false]
+"values": [true, true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Root/HurtBox/HurtBoxCollisionShape2D:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_blv53"]
@@ -369,10 +421,10 @@ tracks/3/path = NodePath("Root/HurtBox/HurtBoxCollisionShape2D:disabled")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true, true]
+"values": [false]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -381,10 +433,10 @@ tracks/4/path = NodePath("Root/HitBox/HitBoxCollisionShape2D:disabled")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [false]
+"values": [true, true]
 }
 
 [sub_resource type="Animation" id="Animation_vxeky"]
@@ -422,10 +474,10 @@ tracks/2/path = NodePath("Root/HurtBox/HurtBoxCollisionShape2D:disabled")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true, true]
+"values": [false]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -434,46 +486,6 @@ tracks/3/path = NodePath("Root/HitBox/HitBoxCollisionShape2D:disabled")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-
-[sub_resource type="Animation" id="Animation_5tlng"]
-resource_name = "hurt"
-step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Root/AnimatedSprite2D:animation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [&"hurt"]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Root/AnimatedSprite2D:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0, 3]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Root/HitBox/HitBoxCollisionShape2D:disabled")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
@@ -490,10 +502,9 @@ _data = {
 }
 
 [node name="Skeleton" type="CharacterBody2D"]
-y_sort_enabled = true
 scale = Vector2(2.5, 2.5)
 collision_layer = 2
-collision_mask = 21
+collision_mask = 5
 motion_mode = 1
 script = ExtResource("1_a1xb0")
 
@@ -503,32 +514,38 @@ script = ExtResource("1_a1xb0")
 texture_filter = 1
 position = Vector2(-2, -4)
 sprite_frames = SubResource("SpriteFrames_f28a1")
-animation = &"walk"
+animation = &"idle"
 frame = 3
 
 [node name="HurtBox" type="Area2D" parent="Root" node_paths=PackedStringArray("health")]
+position = Vector2(-0.799999, -4)
+collision_layer = 16
+collision_mask = 0
 script = ExtResource("5_06nl8")
 health = NodePath("../../Health")
 
 [node name="HurtBoxCollisionShape2D" type="CollisionShape2D" parent="Root/HurtBox"]
-position = Vector2(13.6, -8.4)
-shape = SubResource("RectangleShape2D_wcuvk")
+shape = SubResource("CapsuleShape2D_a7teo")
 disabled = true
+metadata/_edit_lock_ = true
 
 [node name="HitBox" type="Area2D" parent="Root"]
-position = Vector2(-0.8, -4.4)
+position = Vector2(16, -4.4)
+collision_layer = 0
+collision_mask = 8
 script = ExtResource("6_rhiqa")
 
 [node name="HitBoxCollisionShape2D" type="CollisionShape2D" parent="Root/HitBox"]
-shape = SubResource("CapsuleShape2D_qvtim")
+shape = SubResource("RectangleShape2D_v3uy7")
 disabled = true
+metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_byqhl")
 
 [node name="Health" type="Node" parent="."]
 script = ExtResource("5_0fahm")
-max_health = 5.0
+max_health = 25.0
 
 [node name="BTPlayer" type="BTPlayer" parent="."]
 behavior_tree = ExtResource("4_2k6b4")

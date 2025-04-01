@@ -34,7 +34,7 @@ func stop_motion():
 	velocity = Vector2.ZERO
 
 func _damaged(amount: float):
-	print("sekeleton damaged")
+	print("skeleton damaged")
 	animation_player.play("hurt")
 	btplayer.set_active(false)
 	await animation_player.animation_finished

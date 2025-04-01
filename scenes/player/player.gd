@@ -14,9 +14,9 @@ func _process(_delta: float) -> void:
 		direction = Input.get_vector("left", "right", "up", "down")
 		if direction.x != 0 or direction.y != 0:
 			animation_player.play("walk")
-			if direction.x < 0:
+			if direction.x < 0 and $Root.scale.x > 0.0:
 				$Root.scale.x = -1
-			else:
+			if direction.x > 0 and $Root.scale.x < 0.0:
 				$Root.scale.x = 1
 		else:
 			animation_player.play("idle")
@@ -35,7 +35,6 @@ func _damaged(amount:float):
 	#animation_player.play("hurt")
 	#await animation_player.animation_finished
 	print("player damaged")
-	pass
 
 func die():
 	pass
