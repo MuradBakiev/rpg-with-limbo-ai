@@ -1,4 +1,4 @@
-[gd_resource type="BehaviorTree" load_steps=32 format=3 uid="uid://cs21y4k4qm53i"]
+[gd_resource type="BehaviorTree" load_steps=33 format=3 uid="uid://cs21y4k4qm53i"]
 
 [ext_resource type="Script" path="res://ai/tasks/random_dir.gd" id="1_r8eb2"]
 [ext_resource type="Script" path="res://ai/tasks/move_to_pos.gd" id="2_h4rtk"]
@@ -42,6 +42,9 @@ tolerance = 50.0
 custom_name = "Move To Player"
 children = [SubResource("BTCheckAgentProperty_h005f"), SubResource("BTPlayAnimation_v5i13"), SubResource("BTConsolePrint_c624m"), SubResource("BTAction_b5kh8"), SubResource("BTAction_4ctev")]
 
+[sub_resource type="BTWait" id="BTWait_pus4l"]
+duration = 0.1
+
 [sub_resource type="BTConsolePrint" id="BTConsolePrint_6of2i"]
 text = "attack!"
 
@@ -50,13 +53,13 @@ saved_value = NodePath("AnimationPlayer")
 resource_name = "AnimationPlayer"
 
 [sub_resource type="BTPlayAnimation" id="BTPlayAnimation_keqog"]
-await_completion = 1.0
+await_completion = 0.9
 animation_player = SubResource("BBNode_pfi0v")
 animation_name = &"attack1"
 
 [sub_resource type="BTSequence" id="BTSequence_n431p"]
 custom_name = "Attack"
-children = [SubResource("BTConsolePrint_6of2i"), SubResource("BTPlayAnimation_keqog")]
+children = [SubResource("BTWait_pus4l"), SubResource("BTConsolePrint_6of2i"), SubResource("BTPlayAnimation_keqog")]
 
 [sub_resource type="BTSequence" id="BTSequence_gx77r"]
 custom_name = "Attacking"
