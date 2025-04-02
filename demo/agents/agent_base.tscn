@@ -2334,6 +2334,7 @@ tracks/24/keys = {
 [sub_resource type="Animation" id="Animation_msfb2"]
 resource_name = "dodge"
 length = 0.4
+capture_included = true
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
