@@ -1,7 +1,6 @@
 extends CharacterBody2D
 
 var is_attacking: bool = false
-var is_hurted: bool = false
 var direction: Vector2 = Vector2.ZERO
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var hurt_animation_player: AnimationPlayer = $HurtAnimationPlayer
@@ -12,7 +11,7 @@ func _ready() -> void:
 	health.death.connect(die)
 
 func _process(_delta: float) -> void:
-	if !is_attacking and !is_hurted:
+	if !is_attacking:
 		direction = Input.get_vector("left", "right", "up", "down")
 		if direction.x != 0 or direction.y != 0:
 			animation_player.play("walk")

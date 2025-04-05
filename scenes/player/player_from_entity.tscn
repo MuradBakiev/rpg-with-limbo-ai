@@ -1,111 +1,109 @@
-[gd_scene load_steps=46 format=3 uid="uid://bcflgusbq2voj"]
+[gd_scene load_steps=41 format=3 uid="uid://kpdaiki4cghe"]
 
-[ext_resource type="Texture2D" uid="uid://dsff8tdqwgk20" path="res://graphics/Tiny RPG Character Asset Pack v1.03 -Full 20 Characters/Characters(100x100)/Soldier/Soldier/Soldier-Walk.png" id="1_72ug5"]
-[ext_resource type="Script" path="res://scenes/player/player.gd" id="1_dxg85"]
-[ext_resource type="Texture2D" uid="uid://513wxmkpa3hg" path="res://graphics/Tiny RPG Character Asset Pack v1.03 -Full 20 Characters/Characters(100x100)/Soldier/Soldier/Soldier-Attack01.png" id="2_bajtm"]
-[ext_resource type="Texture2D" uid="uid://csru16t04yv4x" path="res://graphics/Tiny RPG Character Asset Pack v1.03 -Full 20 Characters/Characters(100x100)/Soldier/Soldier/Soldier-Idle.png" id="2_t3jiw"]
-[ext_resource type="Texture2D" uid="uid://ctnhy31c15nig" path="res://graphics/Tiny RPG Character Asset Pack v1.03 -Full 20 Characters/Characters(100x100)/Soldier/Soldier with shadows/Soldier-Hurt.png" id="3_yul0h"]
-[ext_resource type="Script" path="res://general scripts/hurtbox.gd" id="5_3rioe"]
-[ext_resource type="Script" path="res://general scripts/health.gd" id="5_gms87"]
-[ext_resource type="Script" path="res://general scripts/hitbox.gd" id="6_gl0hu"]
+[ext_resource type="PackedScene" uid="uid://bmxh341y6k0ri" path="res://scenes/entity_base.tscn" id="1_3wi2h"]
+[ext_resource type="Texture2D" uid="uid://513wxmkpa3hg" path="res://graphics/Tiny RPG Character Asset Pack v1.03 -Full 20 Characters/Characters(100x100)/Soldier/Soldier/Soldier-Attack01.png" id="2_4gnol"]
+[ext_resource type="Script" path="res://scenes/player/player.gd" id="2_ygmdr"]
+[ext_resource type="Texture2D" uid="uid://ctnhy31c15nig" path="res://graphics/Tiny RPG Character Asset Pack v1.03 -Full 20 Characters/Characters(100x100)/Soldier/Soldier with shadows/Soldier-Hurt.png" id="3_un5rc"]
+[ext_resource type="Texture2D" uid="uid://csru16t04yv4x" path="res://graphics/Tiny RPG Character Asset Pack v1.03 -Full 20 Characters/Characters(100x100)/Soldier/Soldier/Soldier-Idle.png" id="4_cpkjj"]
+[ext_resource type="Texture2D" uid="uid://dsff8tdqwgk20" path="res://graphics/Tiny RPG Character Asset Pack v1.03 -Full 20 Characters/Characters(100x100)/Soldier/Soldier/Soldier-Walk.png" id="5_68tye"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_v38sy"]
-atlas = ExtResource("2_bajtm")
+atlas = ExtResource("2_4gnol")
 region = Rect2(0, 0, 100, 100)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gjnm5"]
-atlas = ExtResource("2_bajtm")
+atlas = ExtResource("2_4gnol")
 region = Rect2(100, 0, 100, 100)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8vkq2"]
-atlas = ExtResource("2_bajtm")
+atlas = ExtResource("2_4gnol")
 region = Rect2(200, 0, 100, 100)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_eos25"]
-atlas = ExtResource("2_bajtm")
+atlas = ExtResource("2_4gnol")
 region = Rect2(300, 0, 100, 100)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tqukr"]
-atlas = ExtResource("2_bajtm")
+atlas = ExtResource("2_4gnol")
 region = Rect2(400, 0, 100, 100)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yyts5"]
-atlas = ExtResource("2_bajtm")
+atlas = ExtResource("2_4gnol")
 region = Rect2(500, 0, 100, 100)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_y3lda"]
-atlas = ExtResource("3_yul0h")
+atlas = ExtResource("3_un5rc")
 region = Rect2(0, 0, 100, 100)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pg0q0"]
-atlas = ExtResource("3_yul0h")
+atlas = ExtResource("3_un5rc")
 region = Rect2(100, 0, 100, 100)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_j36ly"]
-atlas = ExtResource("3_yul0h")
+atlas = ExtResource("3_un5rc")
 region = Rect2(200, 0, 100, 100)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_f5bwk"]
-atlas = ExtResource("3_yul0h")
+atlas = ExtResource("3_un5rc")
 region = Rect2(300, 0, 100, 100)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_iibef"]
-atlas = ExtResource("2_t3jiw")
+atlas = ExtResource("4_cpkjj")
 region = Rect2(0, 0, 100, 100)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3ci7l"]
-atlas = ExtResource("2_t3jiw")
+atlas = ExtResource("4_cpkjj")
 region = Rect2(100, 0, 100, 100)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5s7jv"]
-atlas = ExtResource("2_t3jiw")
+atlas = ExtResource("4_cpkjj")
 region = Rect2(200, 0, 100, 100)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7veur"]
-atlas = ExtResource("2_t3jiw")
+atlas = ExtResource("4_cpkjj")
 region = Rect2(300, 0, 100, 100)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ft6wr"]
-atlas = ExtResource("2_t3jiw")
+atlas = ExtResource("4_cpkjj")
 region = Rect2(400, 0, 100, 100)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7s3f5"]
-atlas = ExtResource("2_t3jiw")
+atlas = ExtResource("4_cpkjj")
 region = Rect2(500, 0, 100, 100)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wgrkh"]
-atlas = ExtResource("1_72ug5")
+atlas = ExtResource("5_68tye")
 region = Rect2(0, 0, 100, 100)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pg220"]
-atlas = ExtResource("1_72ug5")
+atlas = ExtResource("5_68tye")
 region = Rect2(100, 0, 100, 100)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7f5qt"]
-atlas = ExtResource("1_72ug5")
+atlas = ExtResource("5_68tye")
 region = Rect2(200, 0, 100, 100)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_l3gqc"]
-atlas = ExtResource("1_72ug5")
+atlas = ExtResource("5_68tye")
 region = Rect2(300, 0, 100, 100)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5ibso"]
-atlas = ExtResource("1_72ug5")
+atlas = ExtResource("5_68tye")
 region = Rect2(400, 0, 100, 100)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7ef6c"]
-atlas = ExtResource("1_72ug5")
+atlas = ExtResource("5_68tye")
 region = Rect2(500, 0, 100, 100)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_y17f1"]
-atlas = ExtResource("1_72ug5")
+atlas = ExtResource("5_68tye")
 region = Rect2(600, 0, 100, 100)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_s3p4m"]
-atlas = ExtResource("1_72ug5")
+atlas = ExtResource("5_68tye")
 region = Rect2(700, 0, 100, 100)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_f8fwk"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_xf7bh"]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -199,16 +197,6 @@ animations = [{
 "name": &"walk",
 "speed": 8.0
 }]
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pyjjw"]
-radius = 8.0
-height = 20.8
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_jwdq5"]
-size = Vector2(25.2, 20)
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_f8unf"]
-radius = 4.94773
 
 [sub_resource type="Animation" id="Animation_kcumg"]
 length = 0.001
@@ -518,57 +506,40 @@ _data = {
 "hurt": SubResource("Animation_2fvll")
 }
 
-[node name="Player" type="CharacterBody2D" groups=["player"]]
-scale = Vector2(2.5, 2.5)
+[node name="Player" instance=ExtResource("1_3wi2h")]
+collision_layer = 1
 collision_mask = 6
-script = ExtResource("1_dxg85")
+script = ExtResource("2_ygmdr")
 
-[node name="Root" type="Node2D" parent="."]
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Root"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Root" index="0"]
 texture_filter = 1
 position = Vector2(0.8, 0.8)
-sprite_frames = SubResource("SpriteFrames_f8fwk")
+scale = Vector2(1, 1)
+sprite_frames = SubResource("SpriteFrames_xf7bh")
 animation = &"idle"
 frame = 5
 
-[node name="HurtBox" type="Area2D" parent="Root" node_paths=PackedStringArray("health")]
+[node name="HurtBox" parent="Root" index="1"]
 collision_layer = 8
-collision_mask = 0
-script = ExtResource("5_3rioe")
-health = NodePath("../../Health")
 
-[node name="HurtBoxCollisionShape2D" type="CollisionShape2D" parent="Root/HurtBox"]
-shape = SubResource("CapsuleShape2D_pyjjw")
-disabled = true
-metadata/_edit_lock_ = true
-
-[node name="HitBox" type="Area2D" parent="Root"]
-position = Vector2(12.8, 0)
-collision_layer = 0
+[node name="HitBox" parent="Root" index="2"]
+position = Vector2(14.8, 0)
 collision_mask = 16
-script = ExtResource("6_gl0hu")
-damage = 2.0
 
-[node name="HitBoxCollisionShape2D" type="CollisionShape2D" parent="Root/HitBox"]
-shape = SubResource("RectangleShape2D_jwdq5")
-disabled = true
-metadata/_edit_lock_ = true
+[node name="HitBoxCollisionShape2D" parent="Root/HitBox" index="0"]
+scale = Vector2(1, 1)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0.8, 4.8)
-shape = SubResource("CircleShape2D_f8unf")
+[node name="NoticeArea" parent="." index="3"]
+visible = false
+monitoring = false
+monitorable = false
 
-[node name="Health" type="Node" parent="."]
-script = ExtResource("5_gms87")
-max_health = 40.0
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="4"]
 libraries = {
 "": SubResource("AnimationLibrary_wy8b8")
 }
 
-[node name="HurtAnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="HurtAnimationPlayer" type="AnimationPlayer" parent="." index="5"]
 libraries = {
 "": SubResource("AnimationLibrary_uhp5a")
 }

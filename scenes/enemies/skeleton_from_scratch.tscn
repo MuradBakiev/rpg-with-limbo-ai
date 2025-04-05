@@ -552,7 +552,6 @@ behavior_tree = ExtResource("4_2k6b4")
 blackboard_plan = SubResource("BlackboardPlan_kae3q")
 
 [node name="NoticeArea" type="Area2D" parent="."]
-visible = false
 collision_layer = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="NoticeArea"]
