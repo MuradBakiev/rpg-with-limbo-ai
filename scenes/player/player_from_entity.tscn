@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://bmxh341y6k0ri" path="res://scenes/entity_base.tscn" id="1_3wi2h"]
 [ext_resource type="Texture2D" uid="uid://513wxmkpa3hg" path="res://graphics/Tiny RPG Character Asset Pack v1.03 -Full 20 Characters/Characters(100x100)/Soldier/Soldier/Soldier-Attack01.png" id="2_4gnol"]
-[ext_resource type="Script" path="res://scenes/player/player.gd" id="2_ygmdr"]
+[ext_resource type="Script" path="res://scenes/player/player_from_entity.gd" id="2_7euju"]
 [ext_resource type="Texture2D" uid="uid://ctnhy31c15nig" path="res://graphics/Tiny RPG Character Asset Pack v1.03 -Full 20 Characters/Characters(100x100)/Soldier/Soldier with shadows/Soldier-Hurt.png" id="3_un5rc"]
 [ext_resource type="Texture2D" uid="uid://csru16t04yv4x" path="res://graphics/Tiny RPG Character Asset Pack v1.03 -Full 20 Characters/Characters(100x100)/Soldier/Soldier/Soldier-Idle.png" id="4_cpkjj"]
 [ext_resource type="Texture2D" uid="uid://dsff8tdqwgk20" path="res://graphics/Tiny RPG Character Asset Pack v1.03 -Full 20 Characters/Characters(100x100)/Soldier/Soldier/Soldier-Walk.png" id="5_68tye"]
@@ -509,12 +509,11 @@ _data = {
 [node name="Player" instance=ExtResource("1_3wi2h")]
 collision_layer = 1
 collision_mask = 6
-script = ExtResource("2_ygmdr")
+script = ExtResource("2_7euju")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Root" index="0"]
 texture_filter = 1
 position = Vector2(0.8, 0.8)
-scale = Vector2(1, 1)
 sprite_frames = SubResource("SpriteFrames_xf7bh")
 animation = &"idle"
 frame = 5
@@ -526,8 +525,8 @@ collision_layer = 8
 position = Vector2(14.8, 0)
 collision_mask = 16
 
-[node name="HitBoxCollisionShape2D" parent="Root/HitBox" index="0"]
-scale = Vector2(1, 1)
+[node name="CollisionShape2D" parent="." index="1"]
+position = Vector2(1.2, 4.8)
 
 [node name="NoticeArea" parent="." index="3"]
 visible = false

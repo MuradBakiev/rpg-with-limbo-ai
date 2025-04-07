@@ -12,7 +12,4 @@ func _area_entered(hurtbox: Area2D) -> void:
 	if hurtbox.owner == owner:
 		return
 	if hurtbox is Hurtbox_manager:
-		#print(get_children().front().disabled)
 		hurtbox.take_damage(damage)
-		#print(hurtbox.owner)
-		#print(owner)

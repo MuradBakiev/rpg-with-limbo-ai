@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://4n2vq34nafbq" path="res://graphics/Tiny RPG Character Asset Pack v1.03 -Full 20 Characters/Characters(100x100)/Skeleton/Skeleton with shadows/Skeleton-Walk.png" id="3_8uolv"]
 [ext_resource type="Texture2D" uid="uid://ts1ptb2wvfwj" path="res://graphics/Tiny RPG Character Asset Pack v1.03 -Full 20 Characters/Characters(100x100)/Skeleton/Skeleton with shadows/Skeleton-Idle.png" id="3_28vvi"]
 [ext_resource type="Texture2D" uid="uid://g3jjvav2ouft" path="res://graphics/Tiny RPG Character Asset Pack v1.03 -Full 20 Characters/Characters(100x100)/Skeleton/Skeleton with shadows/Skeleton-Hurt.png" id="3_ywadj"]
-[ext_resource type="BehaviorTree" uid="uid://cs21y4k4qm53i" path="res://ai/trees/skeleton.tres" id="4_2k6b4"]
+[ext_resource type="BehaviorTree" uid="uid://cs21y4k4qm53i" path="res://ai/trees/orc.tres" id="4_2k6b4"]
 [ext_resource type="Script" path="res://general scripts/health.gd" id="5_0fahm"]
 [ext_resource type="Script" path="res://general scripts/hurtbox.gd" id="5_06nl8"]
 [ext_resource type="Script" path="res://general scripts/hitbox.gd" id="6_rhiqa"]

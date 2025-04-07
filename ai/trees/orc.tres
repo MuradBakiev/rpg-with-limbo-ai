@@ -1,9 +1,9 @@
 [gd_resource type="BehaviorTree" load_steps=33 format=3 uid="uid://cs21y4k4qm53i"]
 
-[ext_resource type="Script" path="res://ai/tasks/random_dir.gd" id="1_r8eb2"]
-[ext_resource type="Script" path="res://ai/tasks/move_to_pos.gd" id="2_h4rtk"]
-[ext_resource type="Script" path="res://ai/tasks/find_target.gd" id="3_kfdg4"]
-[ext_resource type="Script" path="res://ai/tasks/move_to_target.gd" id="4_s0ix4"]
+[ext_resource type="Script" path="res://ai/tasks/find_target.gd" id="1_earyq"]
+[ext_resource type="Script" path="res://ai/tasks/move_to_target.gd" id="2_wfs21"]
+[ext_resource type="Script" path="res://ai/tasks/random_dir.gd" id="3_0b3bp"]
+[ext_resource type="Script" path="res://ai/tasks/move_to_pos.gd" id="4_fa5v1"]
 
 [sub_resource type="BlackboardPlan" id="BlackboardPlan_3b6hr"]
 
@@ -16,6 +16,9 @@ resource_name = "true"
 property = &"attack"
 value = SubResource("BBVariant_uusut")
 
+[sub_resource type="BTConsolePrint" id="BTConsolePrint_c624m"]
+text = "walking to the player"
+
 [sub_resource type="BBNode" id="BBNode_apnfi"]
 saved_value = NodePath("AnimationPlayer")
 resource_name = "AnimationPlayer"
@@ -24,26 +27,23 @@ resource_name = "AnimationPlayer"
 animation_player = SubResource("BBNode_apnfi")
 animation_name = &"walk"
 
-[sub_resource type="BTConsolePrint" id="BTConsolePrint_c624m"]
-text = "walking to the player"
-
 [sub_resource type="BTAction" id="BTAction_b5kh8"]
-script = ExtResource("3_kfdg4")
+script = ExtResource("1_earyq")
 group = &"player"
 target_var = &"target"
 
 [sub_resource type="BTAction" id="BTAction_4ctev"]
-script = ExtResource("4_s0ix4")
+script = ExtResource("2_wfs21")
 target_var = &"target"
 speed_var = 100
 tolerance = 50.0
 
 [sub_resource type="BTSequence" id="BTSequence_vvjnn"]
 custom_name = "Move To Player"
-children = [SubResource("BTCheckAgentProperty_h005f"), SubResource("BTPlayAnimation_v5i13"), SubResource("BTConsolePrint_c624m"), SubResource("BTAction_b5kh8"), SubResource("BTAction_4ctev")]
+children = [SubResource("BTConsolePrint_c624m"), SubResource("BTPlayAnimation_v5i13"), SubResource("BTAction_b5kh8"), SubResource("BTAction_4ctev")]
 
 [sub_resource type="BTWait" id="BTWait_pus4l"]
-duration = 0.1
+duration = 0.2
 
 [sub_resource type="BTConsolePrint" id="BTConsolePrint_6of2i"]
 text = "attack!"
@@ -53,7 +53,7 @@ saved_value = NodePath("AnimationPlayer")
 resource_name = "AnimationPlayer"
 
 [sub_resource type="BTPlayAnimation" id="BTPlayAnimation_keqog"]
-await_completion = 0.9
+await_completion = 1.1
 animation_player = SubResource("BBNode_pfi0v")
 animation_name = &"attack1"
 
@@ -63,7 +63,7 @@ children = [SubResource("BTWait_pus4l"), SubResource("BTConsolePrint_6of2i"), Su
 
 [sub_resource type="BTSequence" id="BTSequence_gx77r"]
 custom_name = "Attacking"
-children = [SubResource("BTSequence_vvjnn"), SubResource("BTSequence_n431p")]
+children = [SubResource("BTCheckAgentProperty_h005f"), SubResource("BTSequence_vvjnn"), SubResource("BTSequence_n431p")]
 
 [sub_resource type="BTConsolePrint" id="BTConsolePrint_cfqxn"]
 text = "idling"
@@ -96,14 +96,14 @@ animation_player = SubResource("BBNode_ymtit")
 animation_name = &"walk"
 
 [sub_resource type="BTAction" id="BTAction_dk5rq"]
-script = ExtResource("1_r8eb2")
+script = ExtResource("3_0b3bp")
 range_min_in_dir = 100
 range_max_in_dir = 300
 position_var = &"pos"
 direction_var = &"dir"
 
 [sub_resource type="BTAction" id="BTAction_kljvh"]
-script = ExtResource("2_h4rtk")
+script = ExtResource("4_fa5v1")
 target_pos_var = &"pos"
 dir_var = &"dir"
 speed = 100

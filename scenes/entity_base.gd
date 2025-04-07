@@ -1,8 +1,10 @@
 extends CharacterBody2D
 
+class_name EntityBase
+
 var attack: bool = false
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
-@onready var btplayer: BTPlayer = $BTPlayer
+#@onready var btplayer: BTPlayer = $BTPlayer
 @onready var health:Health_manager =  $Health
 
 func _ready() -> void:
@@ -23,10 +25,12 @@ func update_facing():
 		$Root.scale.x = 1
 
 func _on_notice_area_body_entered(_body: Node2D) -> void:
+	var btplayer: BTPlayer = $BTPlayer
 	attack = true
 	btplayer.restart()
 
 func _on_notice_area_body_exited(_body: Node2D) -> void:
+	var btplayer: BTPlayer = $BTPlayer
 	attack = false
 	btplayer.restart()
 
@@ -34,7 +38,8 @@ func stop_motion():
 	velocity = Vector2.ZERO
 
 func _damaged(amount: float):
-	print("skeleton damaged")
+	var btplayer: BTPlayer = $BTPlayer
+	#print("skeleton damaged")
 	animation_player.play("hurt")
 	btplayer.set_active(false)
 	await animation_player.animation_finished
