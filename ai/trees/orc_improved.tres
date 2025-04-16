@@ -1,4 +1,4 @@
-[gd_resource type="BehaviorTree" load_steps=33 format=3 uid="uid://dyq515m2r40jd"]
+[gd_resource type="BehaviorTree" load_steps=35 format=3 uid="uid://dyq515m2r40jd"]
 
 [ext_resource type="Script" path="res://ai/tasks/get_first_node_in_group.gd" id="1_6qoec"]
 [ext_resource type="Script" path="res://ai/tasks/pursue.gd" id="2_vmhsu"]
@@ -16,6 +16,11 @@ var/speed/hint_string = "10,1000,10"
 [sub_resource type="BTConsolePrint" id="BTConsolePrint_c624m"]
 text = "walking to the player"
 
+[sub_resource type="BTAction" id="BTAction_w4q8e"]
+script = ExtResource("1_6qoec")
+group = &"player"
+output_var = &"target"
+
 [sub_resource type="BBNode" id="BBNode_apnfi"]
 saved_value = NodePath("AnimationPlayer")
 resource_name = "AnimationPlayer"
@@ -24,27 +29,29 @@ resource_name = "AnimationPlayer"
 animation_player = SubResource("BBNode_apnfi")
 animation_name = &"walk"
 
-[sub_resource type="BTAction" id="BTAction_w4q8e"]
-script = ExtResource("1_6qoec")
-group = &"player"
-output_var = &"target"
-
 [sub_resource type="BTAction" id="BTAction_p233m"]
 script = ExtResource("2_vmhsu")
 target_var = &"target"
 speed_var = &"speed"
 approach_distance = 30.0
 
+[sub_resource type="BBNode" id="BBNode_85ain"]
+saved_value = NodePath("AnimationPlayer")
+resource_name = "AnimationPlayer"
+
+[sub_resource type="BTStopAnimation" id="BTStopAnimation_2mbsx"]
+animation_player = SubResource("BBNode_85ain")
+
 [sub_resource type="BTSequence" id="BTSequence_vvjnn"]
 custom_name = "Move To Player"
-children = [SubResource("BTConsolePrint_c624m"), SubResource("BTPlayAnimation_v5i13"), SubResource("BTAction_w4q8e"), SubResource("BTAction_p233m")]
+children = [SubResource("BTConsolePrint_c624m"), SubResource("BTAction_w4q8e"), SubResource("BTPlayAnimation_v5i13"), SubResource("BTAction_p233m"), SubResource("BTStopAnimation_2mbsx")]
 
 [sub_resource type="BTAction" id="BTAction_dhbmn"]
 script = ExtResource("3_6harm")
 target_var = &"target"
 
 [sub_resource type="BTWait" id="BTWait_pus4l"]
-duration = 0.2
+duration = 0.0
 
 [sub_resource type="BTConsolePrint" id="BTConsolePrint_6of2i"]
 text = "attack!"

@@ -12,6 +12,8 @@ func _ready() -> void:
 	health.death.connect(die)
 
 func _process(_delta: float) -> void:
+	#print($Root/AnimatedSprite2D.animation, $Root/AnimatedSprite2D.frame)
+	#$Root/AnimatedSprite2D.advance(0)
 	pass
 
 #func move(dir, speed):
