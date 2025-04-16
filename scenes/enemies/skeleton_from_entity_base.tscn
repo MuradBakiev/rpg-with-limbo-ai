@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://g3jjvav2ouft" path="res://graphics/Tiny RPG Character Asset Pack v1.03 -Full 20 Characters/Characters(100x100)/Skeleton/Skeleton with shadows/Skeleton-Hurt.png" id="3_r6jye"]
 [ext_resource type="Texture2D" uid="uid://ts1ptb2wvfwj" path="res://graphics/Tiny RPG Character Asset Pack v1.03 -Full 20 Characters/Characters(100x100)/Skeleton/Skeleton with shadows/Skeleton-Idle.png" id="4_g6lke"]
 [ext_resource type="Texture2D" uid="uid://4n2vq34nafbq" path="res://graphics/Tiny RPG Character Asset Pack v1.03 -Full 20 Characters/Characters(100x100)/Skeleton/Skeleton with shadows/Skeleton-Walk.png" id="5_fkpxs"]
-[ext_resource type="BehaviorTree" uid="uid://cs21y4k4qm53i" path="res://ai/trees/orc.tres" id="7_eksv2"]
+[ext_resource type="BehaviorTree" uid="uid://dyq515m2r40jd" path="res://ai/trees/orc_improved.tres" id="6_ehgjm"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_takt8"]
 atlas = ExtResource("2_w86mb")
@@ -484,6 +484,11 @@ _data = {
 }
 
 [sub_resource type="BlackboardPlan" id="BlackboardPlan_ijbj8"]
+var/speed/name = &"speed"
+var/speed/type = 3
+var/speed/value = 100.0
+var/speed/hint = 1
+var/speed/hint_string = "10,1000,10"
 
 [node name="Skeleton" instance=ExtResource("1_pfe21")]
 
@@ -513,5 +518,5 @@ libraries = {
 autoplay = "idle"
 
 [node name="BTPlayer" type="BTPlayer" parent="." index="5"]
-behavior_tree = ExtResource("7_eksv2")
+behavior_tree = ExtResource("6_ehgjm")
 blackboard_plan = SubResource("BlackboardPlan_ijbj8")

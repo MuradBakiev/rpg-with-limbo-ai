@@ -18,7 +18,6 @@ func _tick(_delta: float) -> Status:
 
 func rand_dir():
 	var dir: Vector2 = Vector2(randf_range(-1, 1), randf_range(-1, 1))
-	
 	blackboard.set_var(direction_var, dir)
 	return dir
 

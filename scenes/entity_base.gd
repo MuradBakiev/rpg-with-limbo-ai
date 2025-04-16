@@ -4,8 +4,8 @@ class_name EntityBase
 
 var attack: bool = false
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
-#@onready var btplayer: BTPlayer = $BTPlayer
-@onready var health:Health_manager =  $Health
+@onready var health: Health_manager =  $Health
+@onready var root: Node2D = $Root
 
 func _ready() -> void:
 	health.damaged.connect(_damaged)
@@ -14,15 +14,32 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	pass
 
-func move(dir, speed):
-	velocity = dir * speed
+#func move(dir, speed):
+	#velocity = dir * speed
+	#move_and_slide()
+
+func move(new_velocity: Vector2) -> void:
+	velocity = new_velocity
 	move_and_slide()
 
-func update_facing():
-	if velocity.x < 0:
-		$Root.scale.x = -1
-	else:
-		$Root.scale.x = 1
+
+func face_dir(dir: float) -> void:
+	if dir > 0.0 and root.scale.x < 0.0:
+		root.scale.x = 1.0
+	if dir < 0.0 and root.scale.x > 0.0:
+		root.scale.x = -1.0
+
+
+func update_facing() -> void:
+	face_dir(velocity.x)
+
+
+#func update_facing():
+	#if velocity.x < 0:
+		#$Root.scale.x = -1
+	#else:
+		#$Root.scale.x = 1
+
 
 func _on_notice_area_body_entered(_body: Node2D) -> void:
 	var btplayer: BTPlayer = $BTPlayer
@@ -37,9 +54,8 @@ func _on_notice_area_body_exited(_body: Node2D) -> void:
 func stop_motion():
 	velocity = Vector2.ZERO
 
-func _damaged(amount: float):
+func _damaged(_amount: float):
 	var btplayer: BTPlayer = $BTPlayer
-	#print("skeleton damaged")
 	animation_player.play("hurt")
 	btplayer.set_active(false)
 	await animation_player.animation_finished

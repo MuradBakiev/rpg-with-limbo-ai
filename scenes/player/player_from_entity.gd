@@ -30,7 +30,7 @@ func _process(_delta: float) -> void:
 	velocity = direction * 200
 	move_and_slide()
 
-func _damaged(amount:float):
+func _damaged(_amount:float):
 	hurt_animation_player.play("hurt")
 
 func die():

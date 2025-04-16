@@ -1,20 +1,17 @@
-[gd_resource type="BehaviorTree" load_steps=33 format=3 uid="uid://cs21y4k4qm53i"]
+[gd_resource type="BehaviorTree" load_steps=33 format=3 uid="uid://dyq515m2r40jd"]
 
-[ext_resource type="Script" path="res://ai/tasks/find_target.gd" id="1_earyq"]
-[ext_resource type="Script" path="res://ai/tasks/move_to_target.gd" id="2_wfs21"]
-[ext_resource type="Script" path="res://ai/tasks/random_dir.gd" id="3_0b3bp"]
-[ext_resource type="Script" path="res://ai/tasks/move_to_pos.gd" id="4_fa5v1"]
+[ext_resource type="Script" path="res://ai/tasks/get_first_node_in_group.gd" id="1_6qoec"]
+[ext_resource type="Script" path="res://ai/tasks/pursue.gd" id="2_vmhsu"]
+[ext_resource type="Script" path="res://ai/tasks/random_dir.gd" id="3_4iyo4"]
+[ext_resource type="Script" path="res://ai/tasks/face_target.gd" id="3_6harm"]
+[ext_resource type="Script" path="res://ai/tasks/move_to_pos.gd" id="4_qtr7d"]
 
 [sub_resource type="BlackboardPlan" id="BlackboardPlan_3b6hr"]
-
-[sub_resource type="BBVariant" id="BBVariant_uusut"]
-type = 1
-saved_value = true
-resource_name = "true"
-
-[sub_resource type="BTCheckAgentProperty" id="BTCheckAgentProperty_h005f"]
-property = &"attack"
-value = SubResource("BBVariant_uusut")
+var/speed/name = &"speed"
+var/speed/type = 3
+var/speed/value = 0.0
+var/speed/hint = 1
+var/speed/hint_string = "10,1000,10"
 
 [sub_resource type="BTConsolePrint" id="BTConsolePrint_c624m"]
 text = "walking to the player"
@@ -27,20 +24,24 @@ resource_name = "AnimationPlayer"
 animation_player = SubResource("BBNode_apnfi")
 animation_name = &"walk"
 
-[sub_resource type="BTAction" id="BTAction_b5kh8"]
-script = ExtResource("1_earyq")
+[sub_resource type="BTAction" id="BTAction_w4q8e"]
+script = ExtResource("1_6qoec")
 group = &"player"
-target_var = &"target"
+output_var = &"target"
 
-[sub_resource type="BTAction" id="BTAction_4ctev"]
-script = ExtResource("2_wfs21")
+[sub_resource type="BTAction" id="BTAction_p233m"]
+script = ExtResource("2_vmhsu")
 target_var = &"target"
-speed_var = 100
-tolerance = 50.0
+speed_var = &"speed"
+approach_distance = 30.0
 
 [sub_resource type="BTSequence" id="BTSequence_vvjnn"]
 custom_name = "Move To Player"
-children = [SubResource("BTConsolePrint_c624m"), SubResource("BTPlayAnimation_v5i13"), SubResource("BTAction_b5kh8"), SubResource("BTAction_4ctev")]
+children = [SubResource("BTConsolePrint_c624m"), SubResource("BTPlayAnimation_v5i13"), SubResource("BTAction_w4q8e"), SubResource("BTAction_p233m")]
+
+[sub_resource type="BTAction" id="BTAction_dhbmn"]
+script = ExtResource("3_6harm")
+target_var = &"target"
 
 [sub_resource type="BTWait" id="BTWait_pus4l"]
 duration = 0.2
@@ -59,11 +60,11 @@ animation_name = &"attack1"
 
 [sub_resource type="BTSequence" id="BTSequence_n431p"]
 custom_name = "Attack"
-children = [SubResource("BTWait_pus4l"), SubResource("BTConsolePrint_6of2i"), SubResource("BTPlayAnimation_keqog")]
+children = [SubResource("BTAction_dhbmn"), SubResource("BTWait_pus4l"), SubResource("BTConsolePrint_6of2i"), SubResource("BTPlayAnimation_keqog")]
 
 [sub_resource type="BTSequence" id="BTSequence_gx77r"]
 custom_name = "Attacking"
-children = [SubResource("BTCheckAgentProperty_h005f"), SubResource("BTSequence_vvjnn"), SubResource("BTSequence_n431p")]
+children = [SubResource("BTSequence_vvjnn"), SubResource("BTSequence_n431p")]
 
 [sub_resource type="BTConsolePrint" id="BTConsolePrint_cfqxn"]
 text = "idling"
@@ -96,14 +97,14 @@ animation_player = SubResource("BBNode_ymtit")
 animation_name = &"walk"
 
 [sub_resource type="BTAction" id="BTAction_dk5rq"]
-script = ExtResource("3_0b3bp")
+script = ExtResource("3_4iyo4")
 range_min_in_dir = 100
 range_max_in_dir = 300
 position_var = &"pos"
 direction_var = &"dir"
 
 [sub_resource type="BTAction" id="BTAction_kljvh"]
-script = ExtResource("4_fa5v1")
+script = ExtResource("4_qtr7d")
 target_pos_var = &"pos"
 dir_var = &"dir"
 speed_var = &"speed"
