@@ -1,4 +1,4 @@
-[gd_resource type="BehaviorTree" load_steps=35 format=3 uid="uid://dyq515m2r40jd"]
+[gd_resource type="BehaviorTree" load_steps=33 format=3 uid="uid://dyq515m2r40jd"]
 
 [ext_resource type="Script" path="res://ai/tasks/get_first_node_in_group.gd" id="1_6qoec"]
 [ext_resource type="Script" path="res://ai/tasks/pursue.gd" id="2_vmhsu"]
@@ -35,16 +35,9 @@ target_var = &"target"
 speed_var = &"speed"
 approach_distance = 30.0
 
-[sub_resource type="BBNode" id="BBNode_85ain"]
-saved_value = NodePath("AnimationPlayer")
-resource_name = "AnimationPlayer"
-
-[sub_resource type="BTStopAnimation" id="BTStopAnimation_2mbsx"]
-animation_player = SubResource("BBNode_85ain")
-
 [sub_resource type="BTSequence" id="BTSequence_vvjnn"]
 custom_name = "Move To Player"
-children = [SubResource("BTConsolePrint_c624m"), SubResource("BTAction_w4q8e"), SubResource("BTPlayAnimation_v5i13"), SubResource("BTAction_p233m"), SubResource("BTStopAnimation_2mbsx")]
+children = [SubResource("BTConsolePrint_c624m"), SubResource("BTAction_w4q8e"), SubResource("BTPlayAnimation_v5i13"), SubResource("BTAction_p233m")]
 
 [sub_resource type="BTAction" id="BTAction_dhbmn"]
 script = ExtResource("3_6harm")
