@@ -2,6 +2,8 @@ extends CharacterBody2D
 
 class_name EntityBase
 
+const Arrow := preload("res://scenes/enemies/arrow/arrow.tscn")
+
 var attack: bool = false
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var health: Health_manager =  $Health
@@ -16,9 +18,6 @@ func _process(_delta: float) -> void:
 	#$Root/AnimatedSprite2D.advance(0)
 	pass
 
-#func move(dir, speed):
-	#velocity = dir * speed
-	#move_and_slide()
 
 func move(new_velocity: Vector2) -> void:
 	velocity = new_velocity
@@ -36,11 +35,24 @@ func update_facing() -> void:
 	face_dir(velocity.x)
 
 
-#func update_facing():
-	#if velocity.x < 0:
-		#$Root.scale.x = -1
-	#else:
-		#$Root.scale.x = 1
+func get_facing() -> float:
+	return signf(root.scale.x)
+
+
+func is_good_position(p_position: Vector2) -> bool:
+	var space_state := get_world_2d().direct_space_state
+	var params := PhysicsPointQueryParameters2D.new()
+	params.position = p_position
+	params.collision_mask = 3 # Obstacle layer has value 3
+	var collision := space_state.intersect_point(params)
+	return collision.is_empty()
+
+
+func shoot_arrow() -> void:
+	var arrow := Arrow.instantiate()
+	arrow.dir = get_facing()
+	get_parent().add_child(arrow)
+	arrow.global_position = global_position + Vector2.RIGHT * 10.0 * get_facing()
 
 
 func _on_notice_area_body_entered(_body: Node2D) -> void:
