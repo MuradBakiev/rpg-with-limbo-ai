@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://3udncvhynmvg"]
+[gd_scene load_steps=40 format=3 uid="uid://3udncvhynmvg"]
 
 [ext_resource type="PackedScene" uid="uid://bmxh341y6k0ri" path="res://scenes/entity_base.tscn" id="1_pfe21"]
 [ext_resource type="Texture2D" uid="uid://lixbqu1hev3u" path="res://graphics/Tiny RPG Character Asset Pack v1.03 -Full 20 Characters/Characters(100x100)/Skeleton/Skeleton with shadows/Skeleton-Attack01.png" id="2_w86mb"]
@@ -197,6 +197,9 @@ animations = [{
 "name": &"walk",
 "speed": 12.0
 }]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6ufkc"]
+radius = 72.4011
 
 [sub_resource type="Animation" id="Animation_wtpf7"]
 length = 0.001
@@ -508,8 +511,8 @@ position = Vector2(-0.400006, 3.59999)
 [node name="Health" parent="." index="2"]
 max_health = 25.0
 
-[node name="NoticeArea" parent="." index="3"]
-visible = false
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NoticeArea" index="0"]
+shape = SubResource("CircleShape2D_6ufkc")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="4"]
 libraries = {

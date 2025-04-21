@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://cxw66fvvoeo7t"]
+[gd_scene load_steps=42 format=3 uid="uid://cxw66fvvoeo7t"]
 
 [ext_resource type="PackedScene" uid="uid://bmxh341y6k0ri" path="res://scenes/entity_base.tscn" id="1_bew2g"]
 [ext_resource type="Texture2D" uid="uid://dkchea4ce6i88" path="res://graphics/Tiny RPG Character Asset Pack v1.03 -Full 20 Characters/Characters(100x100)/Skeleton Archer/Skeleton Archer with shadows/Skeleton Archer-Hurt.png" id="2_euco7"]
@@ -224,6 +224,9 @@ animations = [{
 "speed": 12.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_kcmco"]
+radius = 142.836
+
 [sub_resource type="BlackboardPlan" id="BlackboardPlan_p6gbw"]
 var/speed/name = &"speed"
 var/speed/type = 3
@@ -351,6 +354,7 @@ tracks/4/keys = {
 
 [sub_resource type="Animation" id="Animation_4oagr"]
 resource_name = "shoot"
+step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -398,6 +402,20 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, true]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.8),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"shoot_arrow"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_776ly"]
@@ -466,13 +484,17 @@ _data = {
 texture_filter = 1
 position = Vector2(-0.4, -0.4)
 sprite_frames = SubResource("SpriteFrames_dthbg")
-animation = &"idle"
+animation = &"shoot"
+frame = 6
 
 [node name="HurtBoxCollisionShape2D" parent="Root/HurtBox" index="0"]
 disabled = false
 
 [node name="CollisionShape2D" parent="." index="1"]
 position = Vector2(0, 4.4)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NoticeArea" index="0"]
+shape = SubResource("CircleShape2D_kcmco")
 
 [node name="BTPlayer" type="BTPlayer" parent="." index="4"]
 behavior_tree = ExtResource("6_2seyo")

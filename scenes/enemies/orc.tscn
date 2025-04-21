@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://d3q4jd6r2bb4o"]
+[gd_scene load_steps=40 format=3 uid="uid://d3q4jd6r2bb4o"]
 
 [ext_resource type="PackedScene" uid="uid://bmxh341y6k0ri" path="res://scenes/entity_base.tscn" id="1_c787l"]
 [ext_resource type="Texture2D" uid="uid://c0gie82oc01c0" path="res://graphics/Tiny RPG Character Asset Pack v1.03 -Full 20 Characters/Characters(100x100)/Orc/Orc with shadows/Orc-Attack01.png" id="2_ajw0i"]
@@ -197,6 +197,9 @@ animations = [{
 "name": &"walk",
 "speed": 12.0
 }]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8qfs7"]
+radius = 71.6011
 
 [sub_resource type="Animation" id="Animation_wtpf7"]
 length = 0.001
@@ -501,6 +504,9 @@ frame = 3
 
 [node name="CollisionShape2D" parent="." index="1"]
 position = Vector2(0, 4.8)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NoticeArea" index="0"]
+shape = SubResource("CircleShape2D_8qfs7")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="4"]
 libraries = {

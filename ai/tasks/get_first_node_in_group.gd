@@ -1,9 +1,17 @@
 
+@tool
 extends BTAction
 
 @export var group:StringName
-
 @export var output_var: StringName = &"target"
+
+
+func _generate_name() -> String:
+	return "GetFirstNodeInGroup \"%s\"  ➜%s" % [
+		group,
+		LimboUtility.decorate_var(output_var)
+		]
+
 
 func _tick(_delta: float) -> Status:
 	var nodes: Array[Node] = agent.get_tree().get_nodes_in_group(group)
