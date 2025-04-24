@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://cxw66fvvoeo7t"]
+[gd_scene load_steps=45 format=3 uid="uid://cxw66fvvoeo7t"]
 
 [ext_resource type="PackedScene" uid="uid://bmxh341y6k0ri" path="res://scenes/entity_base.tscn" id="1_bew2g"]
 [ext_resource type="Texture2D" uid="uid://dkchea4ce6i88" path="res://graphics/Tiny RPG Character Asset Pack v1.03 -Full 20 Characters/Characters(100x100)/Skeleton Archer/Skeleton Archer with shadows/Skeleton Archer-Hurt.png" id="2_euco7"]
@@ -223,6 +223,16 @@ animations = [{
 "name": &"walk",
 "speed": 12.0
 }]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wk43r"]
+radius = 7.2
+height = 20.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cjral"]
+size = Vector2(13, 19.2)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_uf7qp"]
+radius = 3.93954
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kcmco"]
 radius = 142.836
@@ -485,13 +495,24 @@ texture_filter = 1
 position = Vector2(-0.4, -0.4)
 sprite_frames = SubResource("SpriteFrames_dthbg")
 animation = &"shoot"
-frame = 6
 
-[node name="HurtBoxCollisionShape2D" parent="Root/HurtBox" index="0"]
-disabled = false
+[node name="HurtBox" parent="Root" index="1"]
+position = Vector2(1.6, -0.4)
 
-[node name="CollisionShape2D" parent="." index="1"]
-position = Vector2(0, 4.4)
+[node name="HurtBoxCollisionShape2D" type="CollisionShape2D" parent="Root/HurtBox" index="0"]
+shape = SubResource("CapsuleShape2D_wk43r")
+
+[node name="HitBoxCollisionShape2D" type="CollisionShape2D" parent="Root/HitBox" index="0"]
+shape = SubResource("RectangleShape2D_cjral")
+disabled = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
+position = Vector2(0, 2.8)
+scale = Vector2(1, 1)
+shape = SubResource("CircleShape2D_uf7qp")
+
+[node name="NoticeArea" parent="." index="3"]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="NoticeArea" index="0"]
 shape = SubResource("CircleShape2D_kcmco")

@@ -20,6 +20,9 @@ func _tick(_delta: float) -> Status:
 	if target_pos.distance_to(agent.global_position) < tolerance:
 		return SUCCESS
 	
+	if not agent.attack:
+		return FAILURE
+	
 	var speed: float = blackboard.get_var(speed_var, 10)
 	var dist: float = absf(target_pos.x - agent.global_position.x)
 	var dir: Vector2 = agent.global_position.direction_to(target_pos)

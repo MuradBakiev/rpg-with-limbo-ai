@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://d3q4jd6r2bb4o"]
+[gd_scene load_steps=43 format=3 uid="uid://d3q4jd6r2bb4o"]
 
 [ext_resource type="PackedScene" uid="uid://bmxh341y6k0ri" path="res://scenes/entity_base.tscn" id="1_c787l"]
 [ext_resource type="Texture2D" uid="uid://c0gie82oc01c0" path="res://graphics/Tiny RPG Character Asset Pack v1.03 -Full 20 Characters/Characters(100x100)/Orc/Orc with shadows/Orc-Attack01.png" id="2_ajw0i"]
@@ -197,6 +197,16 @@ animations = [{
 "name": &"walk",
 "speed": 12.0
 }]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6l1fs"]
+radius = 6.4
+height = 19.2
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vbjyh"]
+size = Vector2(13, 19.2)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mur1t"]
+radius = 3.93954
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8qfs7"]
 radius = 71.6011
@@ -502,8 +512,20 @@ sprite_frames = SubResource("SpriteFrames_3118u")
 animation = &"idle"
 frame = 3
 
-[node name="CollisionShape2D" parent="." index="1"]
-position = Vector2(0, 4.8)
+[node name="HurtBoxCollisionShape2D" type="CollisionShape2D" parent="Root/HurtBox" index="0"]
+shape = SubResource("CapsuleShape2D_6l1fs")
+disabled = true
+
+[node name="HitBox" parent="Root" index="2"]
+position = Vector2(16.4, 0)
+
+[node name="HitBoxCollisionShape2D" type="CollisionShape2D" parent="Root/HitBox" index="0"]
+shape = SubResource("RectangleShape2D_vbjyh")
+disabled = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
+position = Vector2(0, 2.8)
+shape = SubResource("CircleShape2D_mur1t")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="NoticeArea" index="0"]
 shape = SubResource("CircleShape2D_8qfs7")

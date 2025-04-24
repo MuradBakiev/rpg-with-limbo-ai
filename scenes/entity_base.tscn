@@ -1,19 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://bmxh341y6k0ri"]
+[gd_scene load_steps=5 format=3 uid="uid://bmxh341y6k0ri"]
 
 [ext_resource type="Script" path="res://scenes/entity_base.gd" id="1_kouq3"]
 [ext_resource type="Script" path="res://general scripts/hurtbox.gd" id="6_m1se6"]
 [ext_resource type="Script" path="res://general scripts/hitbox.gd" id="7_7mmqq"]
 [ext_resource type="Script" path="res://general scripts/health.gd" id="8_4ed4b"]
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_a7teo"]
-radius = 7.2
-height = 22.4
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_v3uy7"]
-size = Vector2(14, 20)
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_byqhl"]
-radius = 4.4
 
 [node name="EntityBase" type="CharacterBody2D"]
 scale = Vector2(2.5, 2.5)
@@ -30,24 +20,11 @@ collision_mask = 0
 script = ExtResource("6_m1se6")
 health = NodePath("../../Health")
 
-[node name="HurtBoxCollisionShape2D" type="CollisionShape2D" parent="Root/HurtBox"]
-shape = SubResource("CapsuleShape2D_a7teo")
-disabled = true
-metadata/_edit_lock_ = true
-
 [node name="HitBox" type="Area2D" parent="Root"]
 position = Vector2(17.6, 0)
 collision_layer = 0
 collision_mask = 8
 script = ExtResource("7_7mmqq")
-
-[node name="HitBoxCollisionShape2D" type="CollisionShape2D" parent="Root/HitBox"]
-shape = SubResource("RectangleShape2D_v3uy7")
-disabled = true
-metadata/_edit_lock_ = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_byqhl")
 
 [node name="Health" type="Node" parent="."]
 script = ExtResource("8_4ed4b")
