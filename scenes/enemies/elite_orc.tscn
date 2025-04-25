@@ -302,6 +302,21 @@ var/spin_speed/value = 200.0
 var/spin_speed/hint = 1
 var/spin_speed/hint_string = "10, 1000, 10"
 
+[sub_resource type="Animation" id="Animation_4n2y1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Root/HitBox/HitBoxCollisionShape2D2:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
 [sub_resource type="Animation" id="Animation_cssik"]
 resource_name = "attack1"
 tracks/0/type = "value"
@@ -351,6 +366,18 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": [true, false, true, true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Root/HitBox/HitBoxCollisionShape2D2:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_hf04l"]
@@ -414,7 +441,7 @@ tracks/4/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [false, false]
+"values": [false, true]
 }
 
 [sub_resource type="Animation" id="Animation_0p0ul"]
@@ -466,6 +493,18 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Root/HitBox/HitBoxCollisionShape2D2:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_av3c5"]
@@ -533,6 +572,18 @@ tracks/4/keys = {
 "update": 1,
 "values": [true, true]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Root/HitBox/HitBoxCollisionShape2D2:disabled")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_f35q4"]
 resource_name = "walk"
@@ -585,16 +636,13 @@ tracks/3/keys = {
 "update": 1,
 "values": [true, true]
 }
-
-[sub_resource type="Animation" id="Animation_4n2y1"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Root/HitBox/HitBoxCollisionShape2D2:disabled")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Root/HitBox/HitBoxCollisionShape2D2:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -616,9 +664,8 @@ _data = {
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Root" index="0"]
 texture_filter = 1
 position = Vector2(-0.4, -0.4)
-scale = Vector2(1, 1)
 sprite_frames = SubResource("SpriteFrames_icjmv")
-animation = &"idle"
+animation = &"walk"
 
 [node name="HurtBoxCollisionShape2D" type="CollisionShape2D" parent="Root/HurtBox" index="0"]
 shape = SubResource("CapsuleShape2D_pcflg")
@@ -629,13 +676,11 @@ disabled = true
 
 [node name="HitBoxCollisionShape2D2" type="CollisionShape2D" parent="Root/HitBox" index="1"]
 position = Vector2(-15.8, -2.2)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_60rj3")
 disabled = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
 position = Vector2(0, 2.8)
-scale = Vector2(1, 1)
 shape = SubResource("CircleShape2D_pedly")
 
 [node name="NoticeArea" parent="." index="3"]

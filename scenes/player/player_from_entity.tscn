@@ -546,8 +546,10 @@ disabled = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
 position = Vector2(0, 2.8)
-scale = Vector2(1, 1)
 shape = SubResource("CircleShape2D_ot22c")
+
+[node name="Health" parent="." index="2"]
+max_health = 30.0
 
 [node name="NoticeArea" parent="." index="3"]
 visible = false
