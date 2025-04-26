@@ -8,12 +8,12 @@ extends BTAction
 
 
 func _generate_name() -> String:
-	return "SelectRandomNearbyPos  range: [%s, %s]  ➜%s" % [
+	return "SelectRandomPosition  range: [%s, %s]  ➜%s" % [
 		range_min, range_max,
 		LimboUtility.decorate_var(position_var)]
 
 
-func _tick(delta: float) -> Status:
+func _tick(_delta: float) -> Status:
 	var pos: Vector2
 	var is_good_position: bool
 	

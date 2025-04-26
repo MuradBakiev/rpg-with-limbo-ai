@@ -1,0 +1,77 @@
+[gd_resource type="BehaviorTree" load_steps=21 format=3 uid="uid://bmtwvkhykr07u"]
+
+[ext_resource type="Script" path="res://ai/tasks/select_random_position.gd" id="1_nwrek"]
+[ext_resource type="Script" path="res://ai/tasks/wander.gd" id="2_tpx2e"]
+
+[sub_resource type="BlackboardPlan" id="BlackboardPlan_dkgu7"]
+
+[sub_resource type="BTSequence" id="BTSequence_br3yv"]
+custom_name = "Summon minion"
+
+[sub_resource type="BTSequence" id="BTSequence_m758c"]
+custom_name = "Change position"
+
+[sub_resource type="BTSelector" id="BTSelector_42kxs"]
+children = [SubResource("BTSequence_br3yv"), SubResource("BTSequence_m758c")]
+
+[sub_resource type="BTConsolePrint" id="BTConsolePrint_ga2k1"]
+text = "idling"
+
+[sub_resource type="BBNode" id="BBNode_t4k00"]
+saved_value = NodePath("AnimationPlayer")
+resource_name = "AnimationPlayer"
+
+[sub_resource type="BTPlayAnimation" id="BTPlayAnimation_lgdhu"]
+animation_player = SubResource("BBNode_t4k00")
+animation_name = &"idle"
+
+[sub_resource type="BTRandomWait" id="BTRandomWait_cebfo"]
+min_duration = 0.5
+max_duration = 1.5
+
+[sub_resource type="BTSequence" id="BTSequence_i6dky"]
+custom_name = "Idle Sequence"
+children = [SubResource("BTConsolePrint_ga2k1"), SubResource("BTPlayAnimation_lgdhu"), SubResource("BTRandomWait_cebfo")]
+
+[sub_resource type="BTConsolePrint" id="BTConsolePrint_0mioc"]
+text = "random move"
+
+[sub_resource type="BBNode" id="BBNode_8cgxc"]
+saved_value = NodePath("AnimationPlayer")
+resource_name = "AnimationPlayer"
+
+[sub_resource type="BTPlayAnimation" id="BTPlayAnimation_p7pb2"]
+animation_player = SubResource("BBNode_8cgxc")
+animation_name = &"walk"
+
+[sub_resource type="BTAction" id="BTAction_jviek"]
+script = ExtResource("1_nwrek")
+range_min = 200.0
+range_max = 300.0
+position_var = &"pos"
+
+[sub_resource type="BTAction" id="BTAction_mcaql"]
+script = ExtResource("2_tpx2e")
+target_position_var = &"pos"
+speed_var = &"speed"
+tolerance = 50.0
+avoid_var = &""
+
+[sub_resource type="BTTimeLimit" id="BTTimeLimit_64n8l"]
+time_limit = 3.0
+children = [SubResource("BTAction_mcaql")]
+
+[sub_resource type="BTSequence" id="BTSequence_pgo0p"]
+custom_name = "Random Move Sequence"
+children = [SubResource("BTConsolePrint_0mioc"), SubResource("BTPlayAnimation_p7pb2"), SubResource("BTAction_jviek"), SubResource("BTTimeLimit_64n8l")]
+
+[sub_resource type="BTSequence" id="BTSequence_h0fb3"]
+custom_name = "Wandering"
+children = [SubResource("BTSequence_i6dky"), SubResource("BTSequence_pgo0p")]
+
+[sub_resource type="BTSelector" id="BTSelector_rjmbj"]
+children = [SubResource("BTSelector_42kxs"), SubResource("BTSequence_h0fb3")]
+
+[resource]
+blackboard_plan = SubResource("BlackboardPlan_dkgu7")
+root_task = SubResource("BTSelector_rjmbj")

@@ -2,9 +2,12 @@ extends CharacterBody2D
 
 class_name EntityBase
 
+const Minion := "res://scenes/enemies/skeleton.tscn"
 const Arrow := preload("res://scenes/enemies/arrow/arrow.tscn")
 
+var summon_count: int = 0
 var attack: bool = false
+
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var health: Health_manager =  $Health
 @onready var root: Node2D = $Root
@@ -53,6 +56,14 @@ func shoot_arrow() -> void:
 	arrow.dir = get_facing()
 	get_parent().add_child(arrow)
 	arrow.global_position = global_position + Vector2.RIGHT * 10.0 * get_facing()
+
+
+func summon_minion(p_position: Vector2) -> void:
+	var minion: CharacterBody2D = load(Minion).instantiate()
+	get_parent().add_child(minion)
+	minion.position = p_position
+	summon_count += 1
+	minion.death.connect(func(): summon_count -= 1)
 
 
 func _on_notice_area_body_entered(_body: Node2D) -> void:
