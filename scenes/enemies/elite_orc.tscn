@@ -684,7 +684,7 @@ position = Vector2(0, 2.8)
 shape = SubResource("CircleShape2D_pedly")
 
 [node name="NoticeArea" parent="." index="3"]
-visible = false
+collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="NoticeArea" index="0"]
 shape = SubResource("CircleShape2D_5ajrb")

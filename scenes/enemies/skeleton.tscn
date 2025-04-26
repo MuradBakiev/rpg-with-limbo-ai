@@ -528,7 +528,10 @@ position = Vector2(0, 2.8)
 shape = SubResource("CircleShape2D_vae2y")
 
 [node name="Health" parent="." index="2"]
-max_health = 25.0
+max_health = 3.0
+
+[node name="NoticeArea" parent="." index="3"]
+collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="NoticeArea" index="0"]
 shape = SubResource("CircleShape2D_6ufkc")

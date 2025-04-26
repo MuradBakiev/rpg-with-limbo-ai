@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://cml1sjdwdowdy"]
+
+[ext_resource type="Script" path="res://scenes/enemies/arrow/arrow.gd" id="1_ousaw"]
+[ext_resource type="Texture2D" uid="uid://co42oxn8ssmeg" path="res://graphics/Tiny RPG Character Asset Pack v1.03 -Full 20 Characters/Arrow(Projectile)/Arrow03(100x100).png" id="2_sa1om"]
+[ext_resource type="Script" path="res://general scripts/hitbox.gd" id="3_v5cxb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bmpcr"]
+size = Vector2(21.25, 7)
+
+[node name="Arrow" type="Node2D"]
+z_index = 1
+scale = Vector2(0.8, 0.8)
+script = ExtResource("1_ousaw")
+
+[node name="Root" type="Node2D" parent="."]
+
+[node name="Projectile" type="Sprite2D" parent="Root"]
+texture_filter = 1
+texture = ExtResource("2_sa1om")
+
+[node name="HitBox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 16
+script = ExtResource("3_v5cxb")
+
+[node name="HitBoxCollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+position = Vector2(0.625001, 0.5)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_bmpcr")
+metadata/_edit_lock_ = true
+
+[connection signal="area_entered" from="HitBox" to="." method="_on_hit_box_area_entered"]

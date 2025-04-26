@@ -2,6 +2,8 @@ extends CharacterBody2D
 
 class_name EntityBase
 
+signal death
+
 const Minion := "res://scenes/enemies/skeleton.tscn"
 const Arrow := preload("res://scenes/enemies/arrow/arrow.tscn")
 
@@ -62,8 +64,12 @@ func summon_minion(p_position: Vector2) -> void:
 	var minion: CharacterBody2D = load(Minion).instantiate()
 	get_parent().add_child(minion)
 	minion.position = p_position
+	minion.z_index = 1
 	summon_count += 1
-	minion.death.connect(func(): summon_count -= 1)
+	minion.death.connect(func():
+		summon_count -= 1
+		print("Summon count:", summon_count)
+	)
 
 
 func _on_notice_area_body_entered(_body: Node2D) -> void:
@@ -87,4 +93,5 @@ func _damaged(_amount: float):
 	btplayer.restart()
 
 func die():
+	death.emit()
 	queue_free()

@@ -527,6 +527,9 @@ disabled = true
 position = Vector2(0, 2.8)
 shape = SubResource("CircleShape2D_mur1t")
 
+[node name="NoticeArea" parent="." index="3"]
+collision_layer = 0
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="NoticeArea" index="0"]
 shape = SubResource("CircleShape2D_8qfs7")
 
