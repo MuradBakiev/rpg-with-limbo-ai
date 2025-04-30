@@ -446,6 +446,7 @@ tracks/4/keys = {
 
 [sub_resource type="Animation" id="Animation_0p0ul"]
 resource_name = "hurt"
+length = 0.3
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -659,13 +660,13 @@ _data = {
 "walk": SubResource("Animation_f35q4")
 }
 
-[node name="EliteOrc" instance=ExtResource("1_ecs5k")]
+[node name="EliteOrc" groups=["arrow_immune"] instance=ExtResource("1_ecs5k")]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Root" index="0"]
 texture_filter = 1
 position = Vector2(-0.4, -0.4)
 sprite_frames = SubResource("SpriteFrames_icjmv")
-animation = &"walk"
+animation = &"hurt"
 
 [node name="HurtBoxCollisionShape2D" type="CollisionShape2D" parent="Root/HurtBox" index="0"]
 shape = SubResource("CapsuleShape2D_pcflg")
@@ -684,6 +685,7 @@ position = Vector2(0, 2.8)
 shape = SubResource("CircleShape2D_pedly")
 
 [node name="NoticeArea" parent="." index="3"]
+visible = false
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="NoticeArea" index="0"]

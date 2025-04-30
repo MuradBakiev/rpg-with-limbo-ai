@@ -1,11 +1,12 @@
 [gd_scene load_steps=4 format=4 uid="uid://crr8x2jd2texx"]
 
 [ext_resource type="TileSet" uid="uid://d0eneppcomln1" path="res://scenes/levels/level.tres" id="1_ii3g4"]
-[ext_resource type="PackedScene" uid="uid://qwjih4s4x2x3" path="res://scenes/enemies/wizard.tscn" id="3_mj3cb"]
+[ext_resource type="Script" path="res://scenes/levels/level.gd" id="1_tcre4"]
 [ext_resource type="PackedScene" uid="uid://kpdaiki4cghe" path="res://scenes/player/player_from_entity.tscn" id="3_y5e04"]
 
 [node name="Level" type="Node2D"]
 y_sort_enabled = true
+script = ExtResource("1_tcre4")
 
 [node name="Ground" type="TileMapLayer" parent="."]
 y_sort_enabled = true
@@ -22,11 +23,12 @@ tile_set = ExtResource("1_ii3g4")
 
 [node name="Player" parent="." groups=["player"] instance=ExtResource("3_y5e04")]
 z_index = 1
-position = Vector2(-29, 143)
+y_sort_enabled = false
+position = Vector2(330, 306)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 zoom = Vector2(1.5, 1.5)
 
-[node name="Wizard" parent="." instance=ExtResource("3_mj3cb")]
+[node name="Enemies" type="Node2D" parent="."]
 z_index = 1
-position = Vector2(426, 373)
+y_sort_enabled = true

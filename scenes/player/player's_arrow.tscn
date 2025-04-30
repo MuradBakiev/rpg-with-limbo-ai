@@ -7,7 +7,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bmpcr"]
 size = Vector2(21.25, 7)
 
-[node name="Arrow" type="Node2D"]
+[node name="Arrow" type="Node2D" groups=["projectile"]]
 z_index = 1
 scale = Vector2(0.8, 0.8)
 script = ExtResource("1_ousaw")
@@ -25,8 +25,12 @@ script = ExtResource("3_v5cxb")
 
 [node name="HitBoxCollisionShape2D" type="CollisionShape2D" parent="HitBox"]
 position = Vector2(0.625001, 0.5)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_bmpcr")
 metadata/_edit_lock_ = true
 
+[node name="DeleteTimer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
 [connection signal="area_entered" from="HitBox" to="." method="_on_hit_box_area_entered"]
+[connection signal="timeout" from="DeleteTimer" to="." method="_on_delete_timer_timeout"]

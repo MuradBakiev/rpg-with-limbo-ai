@@ -5,6 +5,9 @@ const Players_Arrow = preload("res://scenes/player/player's_arrow.tscn")
 var is_attacking: bool = false
 var direction: Vector2 = Vector2.ZERO
 
+var stunned: bool = false
+var original_modulate: Color = Color.WHITE
+
 @onready var hurt_animation_player: AnimationPlayer = $HurtAnimationPlayer
 
 func _ready() -> void:
@@ -53,3 +56,26 @@ func _damaged(_amount:float):
 
 func die():
 	pass
+
+func stun():
+	if stunned:
+		return
+	stunned = true
+
+	# Отключаем управление (если оно зависит от флага)
+	#set_process_input(false)
+	set_block_signals(true)
+
+	# Визуальный эффект — покраснение и дрожание
+	var tween := create_tween().set_loops(1)
+	original_modulate = modulate
+	modulate = Color(1, 0.5, 0.5)
+	
+	print("stunned")
+	#tween.tween_property(self, "position:x", position.x + 5, 0.05).as_relative()
+	tween.tween_property(self, "modulate", original_modulate, 5)
+	tween.tween_callback(func(): modulate = original_modulate)
+	tween.tween_callback(func():
+		stunned = false
+		#set_process_input(true)
+	)

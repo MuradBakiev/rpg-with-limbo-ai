@@ -611,7 +611,7 @@ var/charge_speed/value = 250.0
 var/charge_speed/hint = 1
 var/charge_speed/hint_string = "10, 1000, 10"
 
-[node name="OrcRider" instance=ExtResource("1_d1keg")]
+[node name="OrcRider" groups=["stunner"] instance=ExtResource("1_d1keg")]
 collision_mask = 4
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Root" index="0"]
@@ -630,6 +630,9 @@ disabled = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
 position = Vector2(0, 2.8)
 shape = SubResource("CircleShape2D_bqini")
+
+[node name="Health" parent="." index="2"]
+max_health = 8.0
 
 [node name="NoticeArea" parent="." index="3"]
 collision_layer = 0

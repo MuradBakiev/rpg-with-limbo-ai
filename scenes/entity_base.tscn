@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://general scripts/health.gd" id="8_4ed4b"]
 
 [node name="EntityBase" type="CharacterBody2D"]
+y_sort_enabled = true
 scale = Vector2(2.5, 2.5)
 collision_layer = 2
 collision_mask = 5

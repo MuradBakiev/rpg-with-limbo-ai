@@ -437,7 +437,7 @@ tracks/4/keys = {
 [sub_resource type="Animation" id="Animation_vxeky"]
 resource_name = "walk"
 loop_mode = 1
-step = 0.5
+step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -524,10 +524,14 @@ shape = SubResource("RectangleShape2D_vbjyh")
 disabled = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
-position = Vector2(0, 2.8)
+position = Vector2(0, 4)
 shape = SubResource("CircleShape2D_mur1t")
 
+[node name="Health" parent="." index="2"]
+max_health = 6.0
+
 [node name="NoticeArea" parent="." index="3"]
+visible = false
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="NoticeArea" index="0"]

@@ -495,6 +495,7 @@ texture_filter = 1
 position = Vector2(-0.4, -0.4)
 sprite_frames = SubResource("SpriteFrames_dthbg")
 animation = &"shoot"
+frame = 5
 
 [node name="HurtBox" parent="Root" index="1"]
 position = Vector2(1.6, -0.4)
@@ -509,6 +510,9 @@ disabled = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
 position = Vector2(0, 2.8)
 shape = SubResource("CircleShape2D_uf7qp")
+
+[node name="Health" parent="." index="2"]
+max_health = 5.0
 
 [node name="NoticeArea" parent="." index="3"]
 visible = false

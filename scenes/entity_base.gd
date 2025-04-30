@@ -87,7 +87,8 @@ func stop_motion():
 
 func _damaged(_amount: float):
 	var btplayer: BTPlayer = $BTPlayer
-	animation_player.play("hurt")
+	#animation_player.play("hurt")
+	animation_player.set_deferred("current_animation", "hurt")
 	btplayer.set_active(false)
 	await animation_player.animation_finished
 	btplayer.restart()
