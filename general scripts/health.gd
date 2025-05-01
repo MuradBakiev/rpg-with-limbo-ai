@@ -18,7 +18,7 @@ func _ready() -> void:
 func take_damage(amount: float):
 	current -= amount
 	current = max(current, 0.0)
-	print(current)
+	#print(current)
 	#print(self.get_parent())
 	
 	if current <= 0.0:

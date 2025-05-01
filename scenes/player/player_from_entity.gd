@@ -15,6 +15,9 @@ func _ready() -> void:
 	health.death.connect(die)
 
 func _process(_delta: float) -> void:
+	if stunned:
+		return
+	
 	if !is_attacking:
 		direction = Input.get_vector("left", "right", "up", "down")
 		if direction.x != 0 or direction.y != 0:
@@ -62,20 +65,17 @@ func stun():
 		return
 	stunned = true
 
-	# Отключаем управление (если оно зависит от флага)
-	#set_process_input(false)
-	set_block_signals(true)
-
 	# Визуальный эффект — покраснение и дрожание
 	var tween := create_tween().set_loops(1)
 	original_modulate = modulate
 	modulate = Color(1, 0.5, 0.5)
 	
-	print("stunned")
+	#print("stunned")
 	#tween.tween_property(self, "position:x", position.x + 5, 0.05).as_relative()
-	tween.tween_property(self, "modulate", original_modulate, 5)
+	animation_player.pause()
+	tween.tween_property(self, "modulate", original_modulate, 0.3)
 	tween.tween_callback(func(): modulate = original_modulate)
 	tween.tween_callback(func():
 		stunned = false
-		#set_process_input(true)
+		animation_player.play()
 	)
