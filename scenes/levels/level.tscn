@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=4 uid="uid://crr8x2jd2texx"]
+[gd_scene load_steps=5 format=4 uid="uid://crr8x2jd2texx"]
 
 [ext_resource type="TileSet" uid="uid://d0eneppcomln1" path="res://scenes/levels/level.tres" id="1_ii3g4"]
 [ext_resource type="Script" path="res://scenes/levels/level.gd" id="1_tcre4"]
 [ext_resource type="PackedScene" uid="uid://kpdaiki4cghe" path="res://scenes/player/player_from_entity.tscn" id="3_y5e04"]
+[ext_resource type="PackedScene" uid="uid://bcpv0bvc07f12" path="res://scenes/UI.tscn" id="4_ex8cm"]
 
 [node name="Level" type="Node2D"]
 y_sort_enabled = true
@@ -32,3 +33,5 @@ zoom = Vector2(1.5, 1.5)
 [node name="Enemies" type="Node2D" parent="."]
 z_index = 1
 y_sort_enabled = true
+
+[node name="Control" parent="." instance=ExtResource("4_ex8cm")]

@@ -1,0 +1,37 @@
+[gd_scene load_steps=4 format=3 uid="uid://bcpv0bvc07f12"]
+
+[ext_resource type="Texture2D" uid="uid://bbma85rvi12gf" path="res://graphics/GUI.png" id="1_mt36k"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_upldh"]
+texture = ExtResource("1_mt36k")
+region_rect = Rect2(2, 260, 77, 24)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7fifa"]
+texture = ExtResource("1_mt36k")
+region_rect = Rect2(10, 191, 44, 66)
+
+[node name="Control" type="CanvasLayer"]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+visible = false
+texture_filter = 1
+offset_right = 192.0
+offset_bottom = 304.0
+texture = ExtResource("1_mt36k")
+
+[node name="Button" type="Button" parent="."]
+texture_filter = 1
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 423.0
+offset_bottom = 140.0
+theme_override_styles/normal = SubResource("StyleBoxTexture_upldh")
+
+[node name="Button2" type="Button" parent="."]
+visible = false
+texture_filter = 1
+offset_left = 531.0
+offset_top = 181.0
+offset_right = 752.0
+offset_bottom = 489.0
+theme_override_styles/normal = SubResource("StyleBoxTexture_7fifa")
