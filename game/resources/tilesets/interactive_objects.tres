@@ -1,0 +1,6 @@
+[gd_resource type="TileSet" load_steps=2 format=3 uid="uid://kxl3wi8nffx4"]
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_ah25i"]
+
+[resource]
+sources/3 = SubResource("TileSetScenesCollectionSource_ah25i")

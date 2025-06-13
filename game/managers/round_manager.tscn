@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://caro7tsxqlqis"]
+
+[ext_resource type="Script" path="res://game/managers/round_manager.gd" id="1_a7dy5"]
+[ext_resource type="PackedScene" uid="uid://dbe2g8axqspc" path="res://game/ui/end_screen.tscn" id="2_haosa"]
+
+[node name="RoundManager" type="Node"]
+script = ExtResource("1_a7dy5")
+end_screen_scene = ExtResource("2_haosa")
+
+[node name="ReinforcementTimer" type="Timer" parent="."]
+wait_time = 30.0

@@ -1,0 +1,93 @@
+[gd_scene load_steps=24 format=3 uid="uid://bva2uneh0tvv"]
+
+[ext_resource type="Texture2D" uid="uid://dqxcfsj35r3ro" path="res://assets/Coin/coin (1).png" id="1_k6u4v"]
+[ext_resource type="Script" path="res://game/game_object/gold_coin/gold_coin.gd" id="1_xfln6"]
+[ext_resource type="Texture2D" uid="uid://gklr57c6ki0i" path="res://assets/Coin/coin (2).png" id="2_w53b7"]
+[ext_resource type="Texture2D" uid="uid://qexocficqihv" path="res://assets/Coin/coin (3).png" id="3_krnfo"]
+[ext_resource type="Texture2D" uid="uid://bhperlmp7qumi" path="res://assets/Coin/coin (4).png" id="4_vgnrg"]
+[ext_resource type="Texture2D" uid="uid://drqivy230tn1m" path="res://assets/Coin/coin (5).png" id="5_8l57d"]
+[ext_resource type="Texture2D" uid="uid://dphectvb653un" path="res://assets/Coin/coin (6).png" id="6_k5yqf"]
+[ext_resource type="Texture2D" uid="uid://bggei65yi2fle" path="res://assets/Coin/coin (7).png" id="7_r1ut2"]
+[ext_resource type="Texture2D" uid="uid://b3rj4qgpipiyo" path="res://assets/Coin/coin (8).png" id="8_3n7i3"]
+[ext_resource type="Texture2D" uid="uid://4w0g7taq0ytu" path="res://assets/Coin/coin (9).png" id="9_mbuw7"]
+[ext_resource type="Texture2D" uid="uid://benhcwhfxp471" path="res://assets/Coin/coin (10).png" id="10_6s3cp"]
+[ext_resource type="Texture2D" uid="uid://b7x8ujfcq863y" path="res://assets/Coin/coin (11).png" id="11_2hd5t"]
+[ext_resource type="Texture2D" uid="uid://bggoe542i1yq1" path="res://assets/Coin/coin (12).png" id="12_7w356"]
+[ext_resource type="Texture2D" uid="uid://cr0elctvxx0cj" path="res://assets/Coin/coin (13).png" id="13_bt57a"]
+[ext_resource type="Texture2D" uid="uid://cpbskqhw7wo2h" path="res://assets/Coin/coin (14).png" id="14_os2xt"]
+[ext_resource type="PackedScene" uid="uid://u3oxgrkr6rof" path="res://game/components/random_stream_player_2d_component.tscn" id="16_18mfd"]
+[ext_resource type="AudioStream" uid="uid://cjro8otnw37vg" path="res://assets/audio/impactGlass_light_000.ogg" id="17_nptyg"]
+[ext_resource type="AudioStream" uid="uid://joyvka0aphe" path="res://assets/audio/impactGlass_light_001.ogg" id="18_gbshe"]
+[ext_resource type="AudioStream" uid="uid://cx0xb31isc1vj" path="res://assets/audio/impactGlass_light_002.ogg" id="19_x14ia"]
+[ext_resource type="AudioStream" uid="uid://72kv7sxfht07" path="res://assets/audio/impactGlass_light_003.ogg" id="20_p4o3j"]
+[ext_resource type="AudioStream" uid="uid://rc8nvrb8tkqb" path="res://assets/audio/impactGlass_light_004.ogg" id="21_2rlgt"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fdyja"]
+radius = 20.025
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mh3j6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_k6u4v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_w53b7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_krnfo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_vgnrg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_8l57d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_k5yqf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_r1ut2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_3n7i3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_mbuw7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_6s3cp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_2hd5t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_7w356")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_bt57a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_os2xt")
+}],
+"loop": true,
+"name": &"default",
+"speed": 7.0
+}]
+
+[node name="GoldCoin" type="Node2D"]
+script = ExtResource("1_xfln6")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_fdyja")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.15, 0.15)
+sprite_frames = SubResource("SpriteFrames_mh3j6")
+
+[node name="RandomStreamPlayer2DComponent" parent="." instance=ExtResource("16_18mfd")]
+streams = Array[AudioStream]([ExtResource("17_nptyg"), ExtResource("18_gbshe"), ExtResource("19_x14ia"), ExtResource("20_p4o3j"), ExtResource("21_2rlgt")])

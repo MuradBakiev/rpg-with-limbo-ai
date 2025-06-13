@@ -17,10 +17,11 @@ func _tick(_delta: float) -> Status:
 	var pos: Vector2
 	var is_good_position: bool
 	
+	var random_direction = Vector2.RIGHT.rotated(randf_range(0, TAU))
 	while not is_good_position:
-		var angle: float = randf() * TAU
+		random_direction = random_direction.rotated(deg_to_rad(90))
 		var rand_distance: float = randf_range(range_min, range_max)
-		pos = agent.global_position + Vector2(sin(angle), cos(angle)) * rand_distance
+		pos = agent.global_position + random_direction * rand_distance
 		is_good_position = agent.is_good_position(pos)
 	blackboard.set_var(position_var, pos)
 	return SUCCESS

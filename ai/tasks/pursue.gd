@@ -20,7 +20,6 @@ func _enter() -> void:
 
 func _tick(_delta: float) -> Status:
 	var target: Node2D = blackboard.get_var(target_var, null)
-	#print(blackboard.get_vars_as_dict())
 	if not is_instance_valid(target) or not agent.attack:
 		return FAILURE
 	
@@ -39,7 +38,7 @@ func _tick(_delta: float) -> Status:
 
 
 func _get_desired_position(target: Node2D) -> Vector2:
-	var side = signf(agent.global_position.x - target.global_position.x) #determine where our agent is located relative to the target (from left or from the right side)
+	var side = signf(agent.global_position.x - target.global_position.x) 								#determine where our agent is located relative to the target (from left or from the right side)
 	var desired_pos: Vector2 = target.global_position
 	desired_pos.x += side * approach_distance
 	return desired_pos

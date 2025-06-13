@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="AbilityUpgrade" load_steps=2 format=3 uid="uid://c16uro64ms8gb"]
+
+[ext_resource type="Script" path="res://game/resources/upgrades/ability_upgrade.gd" id="1_k0gjg"]
+
+[resource]
+script = ExtResource("1_k0gjg")
+id = "bow"
+max_quantity = 1
+cost = 5
+name = "Bow"
+description = "Unlocks ability to shoot arrows (use right mouse button)."

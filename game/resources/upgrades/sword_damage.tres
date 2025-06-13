@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="AbilityUpgrade" load_steps=2 format=3 uid="uid://b62ex0ry4kjas"]
+
+[ext_resource type="Script" path="res://game/resources/upgrades/ability_upgrade.gd" id="1_hau53"]
+
+[resource]
+script = ExtResource("1_hau53")
+id = "sword_damage"
+max_quantity = 3
+cost = 1
+name = "Sharpness"
+description = "Increase sword damage by 15% per sharpening."

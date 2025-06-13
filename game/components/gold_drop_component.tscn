@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://d3a8ivww25802"]
+
+[ext_resource type="Script" path="res://game/components/gold_drop_component.gd" id="1_kj0ye"]
+[ext_resource type="PackedScene" uid="uid://bva2uneh0tvv" path="res://game/game_object/gold_coin/gold_coin.tscn" id="2_khijl"]
+
+[node name="GoldDropComponent" type="Node"]
+script = ExtResource("1_kj0ye")
+gold_coin_scene = ExtResource("2_khijl")

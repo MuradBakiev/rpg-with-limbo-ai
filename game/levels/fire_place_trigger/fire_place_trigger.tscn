@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3 uid="uid://c1747rx7j0knf"]
+
+[ext_resource type="TileSet" uid="uid://d0eneppcomln1" path="res://game/resources/tilesets/level.tres" id="1_mg18m"]
+[ext_resource type="Script" path="res://game/levels/fire_place_trigger/fire_place_trigger.gd" id="1_mxe11"]
+[ext_resource type="Script" path="res://game/components/hurtbox.gd" id="2_ir1r8"]
+[ext_resource type="Script" path="res://game/components/health.gd" id="4_x71tj"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cusdk"]
+radius = 24.0208
+
+[node name="FirePlaceTrigger" type="Node2D"]
+script = ExtResource("1_mxe11")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray(0, 0, 0, 0, 0, 0, 3, 0, 6, 0, 2, 0, 0, 0, 0, 0, 1, 0, 3, 0, 6, 0, 3, 0, 0, 0)
+tile_set = ExtResource("1_mg18m")
+
+[node name="Hurtbox" type="Area2D" parent="." node_paths=PackedStringArray("health")]
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("2_ir1r8")
+health = NodePath("../Health")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(24, 73)
+shape = SubResource("CircleShape2D_cusdk")
+
+[node name="Health" type="Node" parent="."]
+script = ExtResource("4_x71tj")
+max_health = 10000.0

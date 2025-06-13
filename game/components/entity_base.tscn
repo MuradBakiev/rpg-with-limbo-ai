@@ -1,0 +1,46 @@
+[gd_scene load_steps=11 format=3 uid="uid://bmxh341y6k0ri"]
+
+[ext_resource type="Script" path="res://game/components/entity_base.gd" id="1_kouq3"]
+[ext_resource type="PackedScene" uid="uid://u3oxgrkr6rof" path="res://game/components/random_stream_player_2d_component.tscn" id="2_yo5tu"]
+[ext_resource type="AudioStream" uid="uid://c6vj2bwnqvbw2" path="res://assets/audio/footstep_carpet_000.ogg" id="3_ak0gv"]
+[ext_resource type="AudioStream" uid="uid://cu3q7qs3rph0d" path="res://assets/audio/footstep_carpet_001.ogg" id="4_rxjsr"]
+[ext_resource type="AudioStream" uid="uid://cuoev6qav7uu3" path="res://assets/audio/footstep_carpet_002.ogg" id="5_uyrj8"]
+[ext_resource type="AudioStream" uid="uid://c3005kothg4bp" path="res://assets/audio/footstep_carpet_003.ogg" id="6_ewb3h"]
+[ext_resource type="Script" path="res://game/components/hurtbox.gd" id="6_m1se6"]
+[ext_resource type="Script" path="res://game/components/hitbox.gd" id="7_7mmqq"]
+[ext_resource type="AudioStream" uid="uid://bjy2n8b6drx3h" path="res://assets/audio/footstep_carpet_004.ogg" id="7_qdhwj"]
+[ext_resource type="Script" path="res://game/components/health.gd" id="8_4ed4b"]
+
+[node name="EntityBase" type="CharacterBody2D"]
+y_sort_enabled = true
+scale = Vector2(2.5, 2.5)
+collision_layer = 2
+collision_mask = 5
+motion_mode = 1
+script = ExtResource("1_kouq3")
+
+[node name="RandomStreamPlayer2DComponent" parent="." instance=ExtResource("2_yo5tu")]
+streams = Array[AudioStream]([ExtResource("3_ak0gv"), ExtResource("4_rxjsr"), ExtResource("5_uyrj8"), ExtResource("6_ewb3h"), ExtResource("7_qdhwj")])
+
+[node name="Root" type="Node2D" parent="."]
+
+[node name="HurtBox" type="Area2D" parent="Root" node_paths=PackedStringArray("health")]
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("6_m1se6")
+health = NodePath("../../Health")
+
+[node name="HitBox" type="Area2D" parent="Root"]
+position = Vector2(17.6, 0)
+collision_layer = 0
+collision_mask = 8
+script = ExtResource("7_7mmqq")
+
+[node name="Health" type="Node" parent="."]
+script = ExtResource("8_4ed4b")
+
+[node name="NoticeArea" type="Area2D" parent="."]
+collision_layer = 16
+
+[connection signal="body_entered" from="NoticeArea" to="." method="_on_notice_area_body_entered"]
+[connection signal="body_exited" from="NoticeArea" to="." method="_on_notice_area_body_exited"]
